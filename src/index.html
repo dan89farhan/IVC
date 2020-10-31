@@ -9,17 +9,100 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../src/assets/bootstrap-4.5.3-dist/css/bootstrap.min.css">
 
-    <title>Hello, world!</title>
-</head>
-
-<body>
-    <h1>Hello, world!</h1>
-
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="../src/assets/lib/jquery-3.5.1.slim.min.js"></script>
-    <script src="../src/assets//bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+    <script src="../src/assets/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>IVC</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="./assets/img/india-flag.jpg" class="d-block w-100" style="height: 200px;"
+                                alt="India Flag">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="Select File">Select Input File</label>
+                        <input type="file" class="form-control-file" id="Select File">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="form-check">
+                        <label for="">Select Resolation</label>
+                        <br />
+                        <input class="form-check-input" type="checkbox" value="240" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            240
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="360" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            360
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="640" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            640
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="720" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            720
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="1080" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            1080
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="2k" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            2k
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="4k" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            4k
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Dropdown button
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </form>
+    </div>
 
 </body>
 
