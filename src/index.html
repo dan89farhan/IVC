@@ -9,11 +9,16 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../src/assets/bootstrap-4.5.3-dist/css/bootstrap.min.css">
 
-    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Insert this line above script imports  -->
+    <script>
+        if (typeof module === 'object') { window.module = module; module = undefined; }
+    </script>
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="../src/assets/lib/jquery-3.5.1.slim.min.js"></script>
     <script src="../src/assets/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Insert this line after script imports -->
+    <script>if (window.module) module = window.module;</script>
 
     <title>IVC</title>
 </head>
@@ -33,6 +38,14 @@
             </div>
         </div>
         <form>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="outputFileName">Output file name</label>
+                        <input type="text" class="form-control" id="outputFileName" aria-describedby="outputFileHelp">
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
@@ -87,18 +100,24 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm">
-
-            </div>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Dropdown button
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+            <div class="row">
+                <div class="col-sm">
+                    <!-- 240, 360, 640, 720, 1080, 2k and 4k -->
+                    <div class="form-group">
+                        <label for="selectResolution">Select Resolution</label>
+                        <select class="form-control" id="selectResolution">
+                            <option value="240">240</option>
+                            <option value="360">360</option>
+                            <option value="640">640</option>
+                            <option value="720">720</option>
+                            <option value="1080">1080</option>
+                            <option value="2k">2k</option>
+                            <option value="4k">4k</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </form>
