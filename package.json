@@ -22,7 +22,8 @@
   },
   "dependencies": {
     "electron-reload": "^1.5.0",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "fluent-ffmpeg": "^2.1.2"
   },
   "config": {
     "forge": {

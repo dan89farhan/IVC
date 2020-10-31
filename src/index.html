@@ -17,6 +17,7 @@
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="../src/assets/lib/jquery-3.5.1.slim.min.js"></script>
     <script src="../src/assets/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../src/assets/lib/jquery.validate.min.js"></script>
     <!-- Insert this line after script imports -->
     <script>if (window.module) module = window.module;</script>
 
@@ -37,12 +38,13 @@
                 </div>
             </div>
         </div>
-        <form>
+        <form id="convertVideoForm" method="POST">
             <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
                         <label for="outputFileName">Output file name</label>
-                        <input type="text" class="form-control" id="outputFileName" aria-describedby="outputFileHelp">
+                        <input type="text" name="outputFileName" class="form-control" id="outputFileName"
+                            aria-describedby="outputFileHelp">
                     </div>
                 </div>
             </div>
@@ -50,57 +52,55 @@
                 <div class="col-sm">
                     <div class="form-group">
                         <label for="Select File">Select Input File</label>
-                        <input type="file" class="form-control-file" id="Select File">
+                        <input type="file" name="inputFile" class="form-control-file" id="Select File">
                     </div>
                 </div>
                 <div class="col-sm">
                     <div class="form-check">
                         <label for="">Select Resolation</label>
                         <br />
-                        <input class="form-check-input" type="checkbox" value="240" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
+                        <input class="form-check-input" type="checkbox" value="240" id="defaultCheck240">
+                        <label class="form-check-label" for="defaultCheck240">
                             240
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="360" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
+                        <input class="form-check-input" type="checkbox" value="360" id="defaultCheck360">
+                        <label class="form-check-label" for="defaultCheck360">
                             360
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="640" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck">
                             640
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="720" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
+                        <input class="form-check-input" type="checkbox" value="720" id="defaultCheck720">
+                        <label class="form-check-label" for="defaultCheck720">
                             720
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="1080" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
+                        <input class="form-check-input" type="checkbox" value="1080" id="defaultCheck1080">
+                        <label class="form-check-label" for="defaultCheck">
                             1080
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="2k" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
+                        <input class="form-check-input" type="checkbox" value="2k" id="defaultCheck2k">
+                        <label class="form-check-label" for="defaultCheck2k">
                             2k
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="4k" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
+                        <input class="form-check-input" type="checkbox" value="4k" id="defaultCheck4k">
+                        <label class="form-check-label" for="defaultCheck4k">
                             4k
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-sm">
                     <!-- 240, 360, 640, 720, 1080, 2k and 4k -->
                     <div class="form-group">
@@ -116,6 +116,9 @@
                         </select>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+
                 <div class="col-sm">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
@@ -124,5 +127,29 @@
     </div>
 
 </body>
+<script>
+    $(`#convertVideoForm`).validate({
+        errorClass: "text-danger",
+        rules: {
+            outputFileName: {
+                required: true
+            },
+            inputFile: {
+                required: true
+            }
+        },
+        messages: {
+            outputFileName: {
+                required: "*Output File is required"
+            },
+            inputFile: {
+                required: "*Input File is required"
+            },
+        },
+        submitHandler: function (form) {
+            // console.log('i m here');
+        }
+    });
+</script>
 
 </html>
