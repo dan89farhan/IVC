@@ -18,8 +18,7 @@
     <script src="../src/assets/lib/jquery-3.5.1.slim.min.js"></script>
     <script src="../src/assets/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../src/assets/lib/jquery.validate.min.js"></script>
-    <!-- Insert this line after script imports -->
-    <script>if (window.module) module = window.module;</script>
+
 
     <title>IVC</title>
 </head>
@@ -127,16 +126,18 @@
     </div>
 
 </body>
+
+<script src="app.js"></script>
 <script>
     $(`#convertVideoForm`).validate({
         errorClass: "text-danger",
         rules: {
-            outputFileName: {
-                required: true
-            },
-            inputFile: {
-                required: true
-            }
+            // outputFileName: {
+            //     required: true
+            // },
+            // inputFile: {
+            //     required: true
+            // }
         },
         messages: {
             outputFileName: {
@@ -148,8 +149,19 @@
         },
         submitHandler: function (form) {
             // console.log('i m here');
+            // let formData = new FormData(document.querySelector('form'));
+            // let normalFormData = {};
+            let formData = $('#convertVideoForm').serializeArray();
+            // console.log(formData);
+            convertVideo(formData);
+            return;
         }
     });
+</script>
+
+<!-- Insert this line after script imports -->
+<script>
+    if (window.module) module = window.module;
 </script>
 
 </html>
