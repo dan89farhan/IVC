@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <form id="convertVideoForm" method="POST">
+        <form id="convertVideoForm" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
@@ -132,12 +132,12 @@
     $(`#convertVideoForm`).validate({
         errorClass: "text-danger",
         rules: {
-            // outputFileName: {
-            //     required: true
-            // },
-            // inputFile: {
-            //     required: true
-            // }
+            outputFileName: {
+                required: true
+            },
+            inputFile: {
+                required: true
+            }
         },
         messages: {
             outputFileName: {
@@ -148,12 +148,13 @@
             },
         },
         submitHandler: function (form) {
-            // console.log('i m here');
-            // let formData = new FormData(document.querySelector('form'));
-            // let normalFormData = {};
-            let formData = $('#convertVideoForm').serializeArray();
-            // console.log(formData);
-            convertVideo(formData);
+            let formData = new FormData(document.querySelector('form'));
+            let formDataObj = {};
+            for (var pair of formData.entries()) {
+                formDataObj[pair[0]] = pair[1];
+            }
+            // console.log(formDataObj);
+            convertVideo(formDataObj);
             return;
         }
     });

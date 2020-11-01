@@ -7,9 +7,7 @@ var ffmpeg = require('./ffmpeg');
 // console.log('File used for Persisting Data - ' + settings.file());
 
 function convertVideo(data) {
-    // var command = new FfmpegCommand();
-    // console.log(ffmpeg('360.avi').save('output.mp4'));
-    let command = ffmpeg('360.avi')
+    let command = ffmpeg(data.inputFile.path)
         .videoCodec('libx264')
         .audioCodec('libmp3lame')
         .size('320x240')
@@ -19,7 +17,7 @@ function convertVideo(data) {
         .on('end', function () {
             console.log('Processing finished !');
         })
-        .save('output/output.mp4');
+        .save(data.outputFileName);
     console.log(command);
     console.log(data);
 }
