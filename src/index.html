@@ -19,6 +19,9 @@
     <script src="../src/assets/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../src/assets/lib/jquery.validate.min.js"></script>
 
+    <!-- Custom Js -->
+    <script src="app.js"></script>
+
 
     <title>IVC</title>
 </head>
@@ -54,65 +57,60 @@
                         <input type="file" name="inputFile" class="form-control-file" id="Select File">
                     </div>
                 </div>
-                <div class="col-sm">
+                <div class="col-sm radiocls">
+                    <label for="">Select Resolution</label>
+                    <br />
                     <div class="form-check">
-                        <label for="">Select Resolation</label>
-                        <br />
-                        <input class="form-check-input" type="checkbox" value="240" id="defaultCheck240">
-                        <label class="form-check-label" for="defaultCheck240">
-                            240
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="360" id="defaultCheck360">
+                        <input class="form-check-input" type="radio" name="resolution" value="0" id="defaultCheck360">
                         <label class="form-check-label" for="defaultCheck360">
                             360
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="640" id="defaultCheck1">
+                        <input class="form-check-input" type="radio" name="resolution" value="1" id="defaultCheck1">
                         <label class="form-check-label" for="defaultCheck">
                             640
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="720" id="defaultCheck720">
+                        <input class="form-check-input" type="radio" name="resolution" value="2" id="defaultCheck720">
                         <label class="form-check-label" for="defaultCheck720">
                             720
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="1080" id="defaultCheck1080">
+                        <input class="form-check-input" type="radio" name="resolution" value="3" id="defaultCheck1080">
                         <label class="form-check-label" for="defaultCheck">
                             1080
                         </label>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="2k" id="defaultCheck2k">
-                        <label class="form-check-label" for="defaultCheck2k">
-                            2k
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="4k" id="defaultCheck4k">
-                        <label class="form-check-label" for="defaultCheck4k">
-                            4k
-                        </label>
-                    </div>
                 </div>
-                <div class="col-sm">
-                    <!-- 240, 360, 640, 720, 1080, 2k and 4k -->
-                    <div class="form-group">
-                        <label for="selectResolution">Select Resolution</label>
-                        <select class="form-control" id="selectResolution">
-                            <option value="240">240</option>
-                            <option value="360">360</option>
-                            <option value="640">640</option>
-                            <option value="720">720</option>
-                            <option value="1080">1080</option>
-                            <option value="2k">2k</option>
-                            <option value="4k">4k</option>
-                        </select>
+                <div class="col-sm radiocls">
+                    <label for="">Select Bitrate</label>
+                    <br />
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="bitrate" value="0" id="defaultCheck360">
+                        <label class="form-check-label" for="defaultCheck360">
+                            5000
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="bitrate" value="1" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck">
+                            2800
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="bitrate" value="2" id="defaultCheck720">
+                        <label class="form-check-label" for="defaultCheck720">
+                            1400
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="bitrate" value="3" id="defaultCheck1080">
+                        <label class="form-check-label" for="defaultCheck">
+                            800
+                        </label>
                     </div>
                 </div>
             </div>
@@ -127,7 +125,7 @@
 
 </body>
 
-<script src="app.js"></script>
+
 <script>
     $(`#convertVideoForm`).validate({
         errorClass: "text-danger",
@@ -137,7 +135,13 @@
             },
             inputFile: {
                 required: true
-            }
+            },
+            resolution: {
+                required: true
+            },
+            bitrate: {
+                required: true
+            },
         },
         messages: {
             outputFileName: {
@@ -146,6 +150,20 @@
             inputFile: {
                 required: "*Input File is required"
             },
+            resolution: {
+                required: "*Resolution is required"
+            },
+            bitrate: {
+                required: "*Bit rate is required"
+            },
+        },
+        errorPlacement: function (error, element) {
+            if (element.is(":radio")) {
+                error.appendTo(element.parents('.radiocls'));
+            }
+            else { // This is the default behavior 
+                error.insertAfter(element);
+            }
         },
         submitHandler: function (form) {
             let formData = new FormData(document.querySelector('form'));
