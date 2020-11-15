@@ -1,5 +1,6 @@
 const electron = require('electron');
 const settings = require('electron-settings');
+var fs = require('fs');
 
 const Store = require('electron-store');
 
@@ -28,8 +29,12 @@ function convertVideo(data) {
     const outputFileName = data.outputFileName;
     const output = outputFileName.split('.');
     const folderName = output[0];
-    console.log('data.outputFileName', `${dirLocation}\\${folderName}\\${data.outputFileName}`);
     // return;
+    const savePath = `${dirLocation}/${folderName}`;
+
+    if (!fs.existsSync(savePath)) {
+        fs.mkdirSync(savePath);
+    }
 
     let command = ffmpeg(data.inputFile.path)
         .audioCodec('libopus')
@@ -37,7 +42,7 @@ function convertVideo(data) {
         .outputOptions([
             '-hls_time 10',
             '-hls_playlist_type vod',
-            `-hls_segment_filename %03d.ts`,
+            `-hls_segment_filename ${dirLocation}/${folderName}/%03d.ts`,
         ])
         .on('progress', function (progress) {
             console.log('Processing: ' + progress.percent + '% done')
@@ -48,7 +53,5 @@ function convertVideo(data) {
         .on('end', function () {
             console.log('Processing finished !');
         })
-        .save(`${dirLocation}\\${folderName}\\${data.outputFileName}`);
-    console.log(command);
-    console.log(data);
+        .save(`${dirLocation}/${folderName}/${data.outputFileName}`);
 }
