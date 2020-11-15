@@ -1,24 +1,35 @@
 const electron = require('electron');
 const settings = require('electron-settings');
+
+const Store = require('electron-store');
+
+
 var ffmpeg = require('./ffmpeg');
 
 let helper = require('./helper');
 const resolutions = helper.getResolutions();
 const bitrates = helper.getBitrate();
-// console.log(helper);
-// var command = ffmpeg();
+
+
 
 
 // console.log('File used for Persisting Data - ' + settings.file());
 
 function convertVideo(data) {
     console.log(data);
-    let resolutionIndex =  data.resolution;
-    let bitRateIndex =  data.bitRate;
+    let resolutionIndex = data.resolution;
+    let bitRateIndex = data.bitRate;
     let resolution = resolutions[resolutionIndex];
     let bitrate = bitrates[bitRateIndex];
-
-    return;
+    const store = new Store();
+    const dirLocation = store.get('videoStore');
+    // console.log(store);
+    // console.log(store.get('videoStore'));
+    const outputFileName = data.outputFileName;
+    const output = outputFileName.split('.');
+    const folderName = output[0];
+    console.log('data.outputFileName', `${dirLocation}\\${folderName}\\${data.outputFileName}`);
+    // return;
 
     let command = ffmpeg(data.inputFile.path)
         .audioCodec('libopus')
@@ -37,7 +48,7 @@ function convertVideo(data) {
         .on('end', function () {
             console.log('Processing finished !');
         })
-        .save(data.outputFileName);
+        .save(`${dirLocation}\\${folderName}\\${data.outputFileName}`);
     console.log(command);
     console.log(data);
 }
