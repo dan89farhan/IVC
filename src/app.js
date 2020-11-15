@@ -29,6 +29,8 @@ function convertVideo(data) {
     const folderName = output[0];
     const savePath = `${dirLocation}/${folderName}`;
 
+    let outputLogFile = $('#outputLogFile');
+
     if (!fs.existsSync(savePath)) {
         fs.mkdirSync(savePath);
     }
@@ -49,22 +51,27 @@ function convertVideo(data) {
         ])
         .on('progress', function (progress) {
             // console.log('Processing: ' + progress.percent + '% done');
-            $('#outputLogFile').append(JSON.stringify(progress));
+            outputLogFile.append(JSON.stringify(progress));
+            outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
         })
         .on('error', function (err) {
             console.log('An error occurred: ' + err.message);
             // alert(`Error Occured ${err.message}`);
-            $('#outputLogFile').append(err.message);
+            outputLogFile.append(err.message);
+            outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
         })
         .on('end', function () {
             console.log('Processing finished !');
-            $('#outputLogFile').append('\n');
-            $('#outputLogFile').append('Processing finished !');
-            $('#outputLogFile').append('\n');
+            outputLogFile.append('\n');
+            outputLogFile.append('Processing finished !');
+            outputLogFile.append('\n');
+            outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
         })
         .save(`${dirLocation}/${folderName}/${data.outputFileName}`);
 }
 
 function clearLogs() {
-    $('#outputLogFile').val('');
+    let outputLogFile = $('#outputLogFile');
+    outputLogFile.html('');
+    outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
 }
