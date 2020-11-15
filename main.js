@@ -2,10 +2,10 @@ const { app, BrowserWindow, Menu, dialog } = require('electron');
 const Store = require('electron-store');
 
 // Enable live reload for Electron too
-require('electron-reload')(__dirname, {
-    // Note that the path to electron may vary according to the main file
-    electron: require(`${__dirname}/node_modules/electron`)
-});
+// require('electron-reload')(__dirname, {
+//     // Note that the path to electron may vary according to the main file
+//     electron: require(`${__dirname}/node_modules/electron`)
+// });
 
 function createWindow() {
     const win = new BrowserWindow({

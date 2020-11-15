@@ -48,14 +48,23 @@ function convertVideo(data) {
             `-hls_segment_filename ${dirLocation}/${folderName}/%03d.ts`,
         ])
         .on('progress', function (progress) {
-            console.log('Processing: ' + progress.percent + '% done')
+            // console.log('Processing: ' + progress.percent + '% done');
+            $('#outputLogFile').append(JSON.stringify(progress));
         })
         .on('error', function (err) {
             console.log('An error occurred: ' + err.message);
-            alert(`Error Occured ${err.message}`);
+            // alert(`Error Occured ${err.message}`);
+            $('#outputLogFile').append(err.message);
         })
         .on('end', function () {
             console.log('Processing finished !');
+            $('#outputLogFile').append('\n');
+            $('#outputLogFile').append('Processing finished !');
+            $('#outputLogFile').append('\n');
         })
         .save(`${dirLocation}/${folderName}/${data.outputFileName}`);
+}
+
+function clearLogs() {
+    $('#outputLogFile').val('');
 }
