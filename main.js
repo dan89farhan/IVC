@@ -11,6 +11,7 @@ function createWindow() {
     const win = new BrowserWindow({
         width: 800,
         height: 600,
+        icon: __dirname + '/src/assets/img/india-flag.jpg',
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true
@@ -59,20 +60,20 @@ function createWindow() {
                 },
             ]
         },
-        {
-            label: 'View',
-            submenu: [
-                { role: 'reload' },
-                { role: 'forcereload' },
-                { role: 'toggledevtools' },
-                { type: 'separator' },
-                { role: 'resetzoom' },
-                { role: 'zoomin' },
-                { role: 'zoomout' },
-                { type: 'separator' },
-                { role: 'togglefullscreen' }
-            ]
-        },
+        // {
+        //     label: 'View',
+        //     submenu: [
+        //         { role: 'reload' },
+        //         { role: 'forcereload' },
+        //         { role: 'toggledevtools' },
+        //         { type: 'separator' },
+        //         { role: 'resetzoom' },
+        //         { role: 'zoomin' },
+        //         { role: 'zoomout' },
+        //         { type: 'separator' },
+        //         { role: 'togglefullscreen' }
+        //     ]
+        // },
     ];
 
     const menu = Menu.buildFromTemplate(menuTemplate)
@@ -80,7 +81,7 @@ function createWindow() {
 
     win.setIcon('./src/assets/img/india-flag.jpg');
 
-    win.webContents.openDevTools();
+    // win.webContents.openDevTools();
 
 
 }
