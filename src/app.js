@@ -19,17 +19,14 @@ const bitrates = helper.getBitrate();
 function convertVideo(data) {
     console.log(data);
     let resolutionIndex = data.resolution;
-    let bitRateIndex = data.bitRate;
+    let bitRateIndex = data.bitrate;
     let resolution = resolutions[resolutionIndex];
     let bitrate = bitrates[bitRateIndex];
     const store = new Store();
     const dirLocation = store.get('videoStore');
-    // console.log(store);
-    // console.log(store.get('videoStore'));
     const outputFileName = data.outputFileName;
     const output = outputFileName.split('.');
     const folderName = output[0];
-    // return;
     const savePath = `${dirLocation}/${folderName}`;
 
     if (!fs.existsSync(savePath)) {
@@ -37,11 +34,17 @@ function convertVideo(data) {
     }
 
     let command = ffmpeg(data.inputFile.path)
-        .audioCodec('libopus')
-        .audioBitrate(96)
         .outputOptions([
+            `-vf scale=w=${resolution.width}:h=${resolution.height}:force_original_aspect_ratio=decrease`,
+            '-strict -2',
+            '-c:v h264',
             '-hls_time 10',
-            '-hls_playlist_type vod',
+            `-b:v ${bitrate}k`,
+            `-maxrate 5350k`,
+            `-bufsize 7500k`,
+            `-b:a 192k`,
+            `-hls_time 4`,
+            `-hls_list_size 0`,
             `-hls_segment_filename ${dirLocation}/${folderName}/%03d.ts`,
         ])
         .on('progress', function (progress) {
@@ -49,6 +52,7 @@ function convertVideo(data) {
         })
         .on('error', function (err) {
             console.log('An error occurred: ' + err.message);
+            alert(`Error Occured ${err.message}`);
         })
         .on('end', function () {
             console.log('Processing finished !');
