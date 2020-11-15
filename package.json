@@ -25,6 +25,7 @@
     "electron-reload": "^1.5.0",
     "electron-settings": "^4.0.2",
     "electron-squirrel-startup": "^1.0.0",
+    "electron-store": "^6.0.1",
     "fluent-ffmpeg": "^2.1.2"
   },
   "config": {

@@ -1,4 +1,5 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, dialog } = require('electron');
+const Store = require('electron-store');
 
 // Enable live reload for Electron too
 require('electron-reload')(__dirname, {
@@ -47,11 +48,16 @@ function createWindow() {
                     }
                 },
                 {
+                    label: 'Setting',
+                    click: () => {
+                        openFileDialoge(win);
+                    }
+                },
+                {
                     role: 'quit'
                 },
             ]
         },
-        // { role: 'viewMenu' }
         {
             label: 'View',
             submenu: [
@@ -74,6 +80,8 @@ function createWindow() {
     win.setIcon('./src/assets/img/india-flag.jpg');
 
     win.webContents.openDevTools();
+
+
 }
 
 app.whenReady().then(createWindow)
@@ -88,4 +96,30 @@ app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
         createWindow()
     }
-})
+});
+
+function openFileDialoge(win) {
+    let options = {
+        // See place holder 1 in above image
+        title: "Select Directory",
+
+        // See place holder 2 in above image
+        defaultPath: "",
+
+
+        properties: ['openDirectory']
+    }
+
+    //Synchronous
+    let filePaths = dialog.showOpenDialog(win, options);
+    filePaths.then(dir => {
+        // console.log();
+        const store = new Store();
+        const dirLocation = dir.filePaths[0];
+        store.set('videoStore', dirLocation);
+
+    }).catch(e => {
+        console.log(e);
+    });
+}
+
