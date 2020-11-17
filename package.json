@@ -7,11 +7,17 @@
     "start": "electron-forge start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "build": "electron-forge build --win --publish never",
+    "deploy": "electron-forge build --win --publish always"
   },
   "keywords": [],
   "author": "Farhan M.Baig",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dan89farhan/IVC.git"
+  },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.54",
     "@electron-forge/maker-deb": "^6.0.0-beta.54",
@@ -26,6 +32,7 @@
     "electron-settings": "^4.0.2",
     "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^6.0.1",
+    "electron-updater": "^4.3.5",
     "fluent-ffmpeg": "^2.1.2"
   },
   "config": {

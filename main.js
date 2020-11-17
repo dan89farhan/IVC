@@ -1,6 +1,8 @@
 const { app, BrowserWindow, Menu, dialog } = require('electron');
 const Store = require('electron-store');
 
+const { autoUpdater } = require('electron-updater');
+
 // Enable live reload for Electron too
 // require('electron-reload')(__dirname, {
 //     // Note that the path to electron may vary according to the main file
@@ -84,6 +86,9 @@ function createWindow() {
     // win.webContents.openDevTools();
 
 
+    win.once('ready-to-show', () => {
+        autoUpdater.checkForUpdatesAndNotify();
+    });
 }
 
 app.whenReady().then(createWindow)
@@ -125,3 +130,16 @@ function openFileDialoge(win) {
     });
 }
 
+
+autoUpdater.on('update-available', () => {
+    mainWindow.webContents.send('update_available');
+});
+
+
+autoUpdater.on('update-downloaded', () => {
+    mainWindow.webContents.send('update_downloaded');
+});
+
+ipcMain.on('restart_app', () => {
+    autoUpdater.quitAndInstall();
+});
