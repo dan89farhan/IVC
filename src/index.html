@@ -61,19 +61,60 @@
             <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
-                        <label for="outputFileName">Output file name</label>
-                        <input type="text" name="outputFileName" class="form-control" id="outputFileName"
-                            aria-describedby="outputFileHelp">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm">
-                    <div class="form-group">
                         <label for="Select File">Select Input File</label>
                         <input type="file" name="inputFile" class="form-control-file" id="Select File">
                     </div>
                 </div>
+
+                <div class="col-sm radiocls">
+                    <label for="">Select Format</label>
+                    <br />
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="encode" value="hls" id="hls" checked>
+                        <label class="form-check-label" for="hls">
+                            HLS
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="encode" value="dash" id="dash">
+                        <label class="form-check-label" for="dash">
+                            DASH
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm radiocls">
+                    <label for="">Select Bit Rate Min</label>
+                    <br />
+                    <div class="d-flex justify-content-center my-4">
+                        <div class="range-field w-75">
+                            <input name="bitratemin" id="bitratemin" class="border-0" type="range" min="0" max="200" />
+                        </div>
+                        <span class="font-weight-bold text-primary ml-2 mt-1 bitrateminSpan"></span>
+                    </div>
+                </div>
+
+                <div class="col-sm radiocls">
+                    <label for="">Select Bit Rate Max</label>
+                    <br />
+                    <div class="d-flex justify-content-center my-4">
+                        <div class="range-field w-75">
+                            <input name="bitratemax" id="bitratemax" class="border-0" type="range" min="0" max="200" />
+                        </div>
+                        <span class="font-weight-bold text-primary ml-2 mt-1 bitratemaxSpan"></span>
+                    </div>
+                </div>
+
+                <div class="col-sm radiocls">
+                    <label for="">Select Bit Rate Buffer</label>
+                    <br />
+                    <div class="d-flex justify-content-center my-4">
+                        <div class="range-field w-75">
+                            <input name="bitratebuffer" id="bitratebuffer" class="border-0" type="range" min="0" max="200" />
+                        </div>
+                        <span class="font-weight-bold text-primary ml-2 mt-1 bitratebufferSpan"></span>
+                    </div>
+                </div>
+
                 <div class="col-sm radiocls">
                     <label for="">Select Resolution</label>
                     <br />
@@ -131,6 +172,17 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="outputFileName">Output file name</label>
+                        <input type="text" name="outputFileName" class="form-control" id="outputFileName"
+                            aria-describedby="outputFileHelp">
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
 
                 <div class="col-sm">
@@ -217,6 +269,38 @@
             convertVideo(formDataObj);
             return;
         }
+    });
+
+    $(document).ready(function () {
+
+        const $valueSpan = $('.valueSpan');
+        const $value = $('#slider11');
+        $valueSpan.html($value.val());
+        $value.on('input change', () => {
+
+            $valueSpan.html($value.val());
+        });
+
+        const $bitrateminSpan = $('.bitrateminSpan');
+        const $bitratemin = $('#bitratemin');
+        $bitrateminSpan.html($bitratemin.val());
+        $bitratemin.on('input change', () => {
+            $bitrateminSpan.html($bitratemin.val());
+        });
+
+        const $bitratemanSpan = $('.bitratemaxSpan');
+        const $bitratemax = $('#bitratemax');
+        $bitratemanSpan.html($bitratemax.val());
+        $bitratemax.on('input change', () => {
+            $bitratemanSpan.html($bitratemax.val());
+        });
+
+        const $bitratebufferSpan = $('.bitratebufferSpan');
+        const $bitratebuffer = $('#bitratebuffer');
+        $bitratebufferSpan.html($bitratebuffer.val());
+        $bitratebuffer.on('input change', () => {
+            $bitratebufferSpan.html($bitratebuffer.val());
+        });
     });
 </script>
 

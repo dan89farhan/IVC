@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, dialog } = require('electron');
+const { app, BrowserWindow, Menu, dialog, ipcMain } = require('electron');
 const Store = require('electron-store');
 
 const { autoUpdater } = require('electron-updater');
@@ -62,20 +62,20 @@ function createWindow() {
                 },
             ]
         },
-        // {
-        //     label: 'View',
-        //     submenu: [
-        //         { role: 'reload' },
-        //         { role: 'forcereload' },
-        //         { role: 'toggledevtools' },
-        //         { type: 'separator' },
-        //         { role: 'resetzoom' },
-        //         { role: 'zoomin' },
-        //         { role: 'zoomout' },
-        //         { type: 'separator' },
-        //         { role: 'togglefullscreen' }
-        //     ]
-        // },
+        {
+            label: 'View',
+            submenu: [
+                { role: 'reload' },
+                { role: 'forcereload' },
+                { role: 'toggledevtools' },
+                { type: 'separator' },
+                { role: 'resetzoom' },
+                { role: 'zoomin' },
+                { role: 'zoomout' },
+                { type: 'separator' },
+                { role: 'togglefullscreen' }
+            ]
+        },
     ];
 
     const menu = Menu.buildFromTemplate(menuTemplate)

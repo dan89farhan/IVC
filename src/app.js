@@ -1,4 +1,4 @@
-const electron, { ipcRenderer } = require('electron');
+const electron = require('electron');
 const settings = require('electron-settings');
 var fs = require('fs');
 
@@ -8,6 +8,7 @@ const Store = require('electron-store');
 var ffmpeg = require('./ffmpeg');
 
 let helper = require('./helper');
+const { ipcRenderer } = require('electron');
 const resolutions = helper.getResolutions();
 const bitrates = helper.getBitrate();
 
@@ -18,13 +19,17 @@ const bitrates = helper.getBitrate();
 
 function convertVideo(data) {
     console.log(data);
+    // return;
     let resolutionIndex = data.resolution;
     let bitRateIndex = data.bitrate;
+    let bitrateMin = data.bitratemin;
+    let bitratemax = data.bitratemax;
+    let bitratebuffer = data.bitratebuffer;
     let resolution = resolutions[resolutionIndex];
     let bitrate = bitrates[bitRateIndex];
     const store = new Store();
     const dirLocation = store.get('videoStore');
-    const outputFileName = data.outputFileName;
+    const outputFileName = data.outputFileName + '.m3u8';
     const output = outputFileName.split('.');
     const folderName = output[0];
     const savePath = `${dirLocation}/${folderName}`;
@@ -42,8 +47,8 @@ function convertVideo(data) {
             '-c:v h264',
             '-hls_time 10',
             `-b:v ${bitrate}k`,
-            `-maxrate 5350k`,
-            `-bufsize 7500k`,
+            `-maxrate ${bitratemax}k`,
+            `-bufsize ${bitratebuffer}k`,
             `-b:a 192k`,
             `-hls_time 4`,
             `-hls_list_size 0`,
@@ -67,7 +72,7 @@ function convertVideo(data) {
             outputLogFile.append('\n');
             outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
         })
-        .save(`${dirLocation}/${folderName}/${data.outputFileName}`);
+        .save(`${dirLocation}/${folderName}/${outputFileName}`);
 }
 
 function clearLogs() {
