@@ -73,6 +73,33 @@ function convertVideo(data) {
             outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
         })
         .save(`${dirLocation}/${folderName}/${outputFileName}`);
+
+    ffmpeg(data.inputFile.path)
+        .outputOptions([
+            `-ss 15`,
+            '-t 15',
+            '-pix_fmt rgb8',
+            '-filter:v scale=-1:320',
+        ])
+        .on('progress', function (progress) {
+            console.log('Processing: ' + progress.percent + '% done');
+            outputLogFile.append(JSON.stringify(progress));
+            outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
+        })
+        .on('error', function (err) {
+            console.log('An error occurred: ' + err.message);
+            // alert(`Error Occured ${err.message}`);
+            outputLogFile.append(err.message);
+            outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
+        })
+        .on('end', function () {
+            console.log('Processing finished !');
+            outputLogFile.append('\n');
+            outputLogFile.append('Processing finished !');
+            outputLogFile.append('\n');
+            outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
+        })
+        .save(`${dirLocation}/output.gif`);
 }
 
 function clearLogs() {
