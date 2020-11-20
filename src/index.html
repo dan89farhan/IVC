@@ -197,6 +197,22 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-sm radiocls">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="thumbnail" id="thumbnail" value="1">
+                        <label class="form-check-label" for="thumbnail">
+                            Thumbnail
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm radiocls">
+                    <div class="form-check">
+                        <label for="totalNumberOfFrames">Total Number of Frames</label>
+                        <input type="text" name="totalNumberOfFrames" class="form-control" id="totalNumberOfFrames">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
                         <label for="outputFileName">Output file name</label>
@@ -270,6 +286,13 @@
                         return $("#gif").is(":checked");
                     }
                 }
+            },
+            totalNumberOfFrames: {
+                required: {
+                    depends: function (element) {
+                        return $("#thumbnail").is(":checked");
+                    }
+                }
             }
         },
         messages: {
@@ -290,6 +313,9 @@
             },
             end: {
                 required: "*End is required"
+            },
+            end: {
+                required: "*Total Number Of Frames is required"
             }
         },
         errorPlacement: function (error, element) {

@@ -30,7 +30,7 @@ function convertVideo(data) {
     const store = new Store();
     const dirLocation = store.get('videoStore');
     const outputFileName = data.outputFileName + '.m3u8';
-    const gifOutFileName = data.outputFileName+'.gif';
+    const gifOutFileName = data.outputFileName + '.gif';
     const output = outputFileName.split('.');
     const folderName = output[0];
     const savePath = `${dirLocation}/${folderName}`;
@@ -105,6 +105,33 @@ function convertVideo(data) {
             })
             .save(`${dirLocation}/${folderName}/${gifOutFileName}`);
     }
+
+    // ffmpeg(data.inputFile.path)
+    //     .outputOptions([
+    //         `-ss 0:3`,
+    //         `-vf "select=gt(scene\,0.5)"`,
+    //         '-frames:v 5',
+    //         '-vsync vfr',
+    //     ])
+    //     .on('progress', function (progress) {
+    //         console.log('Processing: ' + progress.percent + '% done');
+    //         outputLogFile.append(JSON.stringify(progress));
+    //         outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
+    //     })
+    //     .on('error', function (err) {
+    //         console.log('An error occurred: ' + err.message);
+    //         // alert(`Error Occured ${err.message}`);
+    //         outputLogFile.append(err.message);
+    //         outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
+    //     })
+    //     .on('end', function () {
+    //         console.log('Processing finished !');
+    //         outputLogFile.append('\n');
+    //         outputLogFile.append('Processing finished !');
+    //         outputLogFile.append('\n');
+    //         outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
+    //     })
+    //     .save(`${dirLocation}/${folderName}/Out%02d.jpg`);
 
 }
 
