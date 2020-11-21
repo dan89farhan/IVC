@@ -27,6 +27,8 @@ function convertVideo(data) {
     let bitratebuffer = data.bitratebuffer;
     let resolution = resolutions[resolutionIndex];
     let bitrate = bitrates[bitRateIndex];
+    let gif = data.gif;
+    let thumbnail = data.thumbnail;
     const store = new Store();
     const dirLocation = store.get('videoStore');
     const outputFileName = data.outputFileName + '.m3u8';
@@ -132,6 +134,36 @@ function convertVideo(data) {
     //         outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
     //     })
     //     .save(`${dirLocation}/${folderName}/Out%02d.jpg`);
+
+    if (thumbnail) {
+        const totalNumberOfFrames = data.totalNumberOfFrames;
+        ffmpeg(data.inputFile.path)
+            .on('filenames', function (filenames) {
+                console.log('Will generate ' + filenames.join(', '));
+                outputLogFile.append('\n');
+                outputLogFile.append('Will generate ' + filenames.join(', '));
+                outputLogFile.append('\n');
+            })
+            .on('end', function () {
+                console.log('Thumbnails Generated');
+                outputLogFile.append('\n');
+                outputLogFile.append('Thumbnails Generated');
+            })
+            .on('error', function (err) {
+                console.log('error reported', err.message);
+                outputLogFile.append('\n');
+                outputLogFile.append(`Error: ${err.message}`);
+                outputLogFile.append('\n');
+            })
+            .screenshots({
+                // timestamps: ['50%'],
+                count: totalNumberOfFrames,
+                filename: 'thumbnail-at-%s-seconds.png',
+                folder: `${dirLocation}/${folderName}/thumbnails`,
+                size: '320x240'
+            });
+    }
+
 
 }
 
