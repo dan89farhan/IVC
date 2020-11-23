@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../src/assets/bootstrap-4.5.3-dist/css/bootstrap.min.css">
+
+    <!-- Insert this line above script imports  -->
+    <script>
+        if (typeof module === 'object') { window.module = module; module = undefined; }
+    </script>
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="../src/assets/lib/jquery-3.5.1.slim.min.js"></script>
+    <script src="../src/assets/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../src/assets/lib/jquery.validate.min.js"></script>
+
+    <!-- Custom Js -->
+    <script src="app.js"></script>
+
+
+    <title>IVC</title>
+
+    <style>
+        *{
+            font-size: 14px;
+        }
+        #notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 200px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .hidden {
+            display: none;
+        }
+        .w-15{
+            width: 15%
+        }
+        .form-control{
+            height: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="./assets/img/india-flag.png" class="d-block w-100" 
+                    alt="India Flag">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        
+        <form id="convertVideoForm" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="Select File" class="d-inline mr-2">Select Input File</label>
+                        <input type="file" name="inputFile" class="form-control-file w-50 d-inline" id="Select File">
+                    </div>
+                </div>
+
+                <div class="col-sm radiocls form-group">
+                    <label for="" class="mr-2">Select Format</label>
+                    <div class="form-check-inline">
+                        <label class="form-check-label mr-2" for="hls">
+                            hls
+                        </label>
+                        <input class="form-check-input" type="radio" name="encode" value="hls" id="hls" checked>
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label mr-2" for="dash">
+                            dash
+                        </label>
+                        <input class="form-check-input" type="radio" name="encode" value="dash" id="dash">
+                    </div>
+                </div>
+                <div class="col-sm radiocls form-group">
+                    <label for="">Select Bit Rate Min: <span class="font-weight-bold text-primary bitrateminSpan"></span>mbps</label>
+                    
+                    <div class="d-flex justify-content-center">
+                        <div class="range-field w-100">
+                            <input name="bitratemin" id="bitratemin" class="form-control-range" type="range" min="0" max="200" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm radiocls form-group">
+                    <label for="">Select Bit Rate Max: <span class="font-weight-bold text-primary bitratemaxSpan"></span>mbps</label>
+                    
+                    <div class="d-flex justify-content-center">
+                        <div class="range-field w-100">
+                            <input name="bitratemax" id="bitratemax" class="form-control-range" type="range" min="0" max="200" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm radiocls form-group">
+                    <label for="">Select Bit Rate Buffer: <span class="font-weight-bold text-primary bitratebufferSpan"></span>mbps</label>
+                    
+                    <div class="d-flex justify-content-center">
+                        <div class="range-field w-100">
+                            <input name="bitratebuffer" id="bitratebuffer" class="form-control-range" type="range" min="0"
+                                max="200" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm radiocls form-group">
+                    <label for="" class="d-block">Select Resolution</label>
+                    <div class="form-check-inline">
+                        <label class="form-check-label mr-1" for="defaultCheck360">
+                            360
+                        </label>
+                        <input class="form-check-input" type="radio" name="resolution" value="0" id="defaultCheck360">
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label mr-1" for="defaultCheck">
+                            640
+                        </label>
+                        <input class="form-check-input" type="radio" name="resolution" value="1" id="defaultCheck1">
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label mr-1" for="defaultCheck720">
+                            720
+                        </label>
+                        <input class="form-check-input" type="radio" name="resolution" value="2" id="defaultCheck720">
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label mr-1" for="defaultCheck">
+                            1080
+                        </label>
+                        <input class="form-check-input" type="radio" name="resolution" value="3" id="defaultCheck1080">
+                    </div>
+                </div>
+                <div class="col-sm radiocls form-group">
+                    <label for="" class="d-block">Select Bitrate</label>
+                    <div class="form-check-inline">
+                        <label class="form-check-label mr-1" for="bitrate5000">
+                            5000
+                        </label>
+                        <input class="form-check-input" type="radio" name="bitrate" value="0" id="bitrate5000">
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label mr-1" for="bitrate2800">
+                            2800
+                        </label>
+                        <input class="form-check-input" type="radio" name="bitrate" value="1" id="bitrate2800">
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label mr-1" for="bitrate1400">
+                            1400
+                        </label>
+                        <input class="form-check-input" type="radio" name="bitrate" value="2" id="bitrate1400">
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label mr-1" for="bitratek800">
+                            800
+                        </label>
+                        <input class="form-check-input" type="radio" name="bitrate" value="3" id="bitratek800">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm radiocls form-group">
+                    <div class="form-check-inline">
+                        <label for="gif" class="form-check-label mr-2">
+                            GIF
+                        </label>
+                        <input class="form-check-input mr-3" type="checkbox" name="gif" id="gif" value="1">
+                        <label for="start_time" class="mr-2">Time Start</label>
+                        <input type="text" name="starttime" class="form-control w-15 mr-3" id="start_time">
+                        <label for="end" class="mr-2">End</label>
+                        <input type="text" name="end" class="form-control w-15" id="end">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm radiocls form-group">
+                    <div class="form-check-inline">
+                        <label class="form-check-label mr-2" for="thumbnail">
+                            Thumbnail
+                        </label>
+                        <input class="form-check-input mr-3" type="checkbox" name="thumbnail" id="thumbnail" value="1">
+                        <label for="totalNumberOfFrames" class="mr-2">Total Number of Frames</label>
+                        <input type="text" name="totalNumberOfFrames" class="form-control w-15" id="totalNumberOfFrames">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="outputFileName" class="d-inline mr-2">Output file name</label>
+                        <input type="text" name="outputFileName" class="form-control d-inline w-50" id="outputFileName"
+                            aria-describedby="outputFileHelp">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm mb-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="outputLogFile">Output Log file</label>
+                        <textarea name="outputLogFile" class="form-control" id="outputLogFile"
+                            aria-describedby="outputLogFile" rows="5" disabled></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm mb-3">
+                    <button type="button" onclick="clearLogs()" class="btn btn-primary">Clear Logs</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="notification" class="hidden">
+        <p id="message"></p>
+        <button id="close-button" onClick="closeNotification()">
+            Close
+        </button>
+        <button id="restart-button" onClick="restartApp()" class="hidden">
+            Restart
+        </button>
+    </div>
+
+</body>
+
+
+<script>
+    $(`#convertVideoForm`).validate({
+        errorClass: "text-danger",
+        rules: {
+            outputFileName: {
+                required: true
+            },
+            inputFile: {
+                required: true
+            },
+            resolution: {
+                required: true
+            },
+            bitrate: {
+                required: true
+            },
+            starttime: {
+                required: {
+                    depends: function (element) {
+                        return $("#gif").is(":checked");
+                    }
+                }
+            },
+            end: {
+                required: {
+                    depends: function (element) {
+                        return $("#gif").is(":checked");
+                    }
+                }
+            },
+            totalNumberOfFrames: {
+                required: {
+                    depends: function (element) {
+                        return $("#thumbnail").is(":checked");
+                    }
+                }
+            }
+        },
+        messages: {
+            outputFileName: {
+                required: "*Output File is required"
+            },
+            inputFile: {
+                required: "*Input File is required"
+            },
+            resolution: {
+                required: "*Resolution is required"
+            },
+            bitrate: {
+                required: "*Bit rate is required"
+            },
+            starttime: {
+                required: "*Start time is required"
+            },
+            end: {
+                required: "*End is required"
+            },
+            totalNumberOfFrames: {
+                required: "*Total Number Of Frames is required"
+            }
+        },
+        errorPlacement: function (error, element) {
+            if (element.is(":radio")) {
+                error.appendTo(element.parents('.radiocls'));
+            }
+            else { // This is the default behavior 
+                error.insertAfter(element);
+            }
+        },
+        submitHandler: function (form) {
+            let formData = new FormData(document.querySelector('form'));
+            let formDataObj = {};
+            for (var pair of formData.entries()) {
+                formDataObj[pair[0]] = pair[1];
+            }
+            // console.log(formDataObj);
+            convertVideo(formDataObj);
+            return;
+        }
+    });
+
+    $(document).ready(function () {
+
+        const $valueSpan = $('.valueSpan');
+        const $value = $('#slider11');
+        $valueSpan.html($value.val());
+        $value.on('input change', () => {
+
+            $valueSpan.html($value.val());
+        });
+
+        const $bitrateminSpan = $('.bitrateminSpan');
+        const $bitratemin = $('#bitratemin');
+        $bitrateminSpan.html($bitratemin.val());
+        $bitratemin.on('input change', () => {
+            $bitrateminSpan.html($bitratemin.val());
+        });
+
+        const $bitratemanSpan = $('.bitratemaxSpan');
+        const $bitratemax = $('#bitratemax');
+        $bitratemanSpan.html($bitratemax.val());
+        $bitratemax.on('input change', () => {
+            $bitratemanSpan.html($bitratemax.val());
+        });
+
+        const $bitratebufferSpan = $('.bitratebufferSpan');
+        const $bitratebuffer = $('#bitratebuffer');
+        $bitratebufferSpan.html($bitratebuffer.val());
+        $bitratebuffer.on('input change', () => {
+            $bitratebufferSpan.html($bitratebuffer.val());
+        });
+    });
+</script>
+
+<!-- Insert this line after script imports -->
+<script>
+    if (window.module) module = window.module;
+</script>
+
+</html>

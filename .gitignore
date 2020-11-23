@@ -1,0 +1,5 @@
+node_modules
+out
+output
+input
+electron-builder.yml

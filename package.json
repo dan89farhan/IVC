@@ -1,0 +1,66 @@
+{
+  "name": "ivc",
+  "version": "1.0.0",
+  "description": "This is Indian Video Converter",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "build": "electron-forge build --win --publish never",
+    "deploy": "electron-forge build --win --publish always"
+  },
+  "keywords": [],
+  "author": "Farhan M.Baig",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dan89farhan/IVC.git"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.54",
+    "@electron-forge/maker-deb": "^6.0.0-beta.54",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
+    "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "electron": "^10.1.5"
+  },
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.0.20",
+    "@ffprobe-installer/ffprobe": "^1.1.0",
+    "electron-reload": "^1.5.0",
+    "electron-settings": "^4.0.2",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-store": "^6.0.1",
+    "electron-updater": "^4.3.5",
+    "fluent-ffmpeg": "^2.1.2"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "ivc"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
+}
