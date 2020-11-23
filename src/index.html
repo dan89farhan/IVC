@@ -26,8 +26,13 @@
     <title>IVC</title>
 
     <style>
+        body{
+            background: rgb(255,239,205);
+            background: linear-gradient(338deg, rgba(255,239,205,1) 0%, rgba(218,254,255,1) 60%);
+        }
         *{
             font-size: 14px;
+            color: #000;
         }
         #notification {
             position: fixed;
@@ -48,6 +53,37 @@
         }
         .form-control{
             height: 25px;
+        }
+
+        input[type=range]{
+            -webkit-appearance: none;
+            padding: 5px 0;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 300px;
+            height: 1px;
+            background: #000;
+            border: none;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            border: none;
+            height: 23px;
+            width: 16px;
+            border-radius: 50%;
+            background: #007bff;
+            margin-top: -10px;
+        }
+
+        input[type=range]:focus {
+            outline: none;
+        }
+
+        input[type=range]:focus::-webkit-slider-runnable-track {
+            background: #ccc;
         }
     </style>
 </head>
@@ -75,14 +111,14 @@
                 <div class="col-sm radiocls form-group">
                     <label for="" class="mr-2">Select Format</label>
                     <div class="form-check-inline">
-                        <label class="form-check-label mr-2" for="hls">
-                            hls
+                        <label class="form-check-label mb-1 mr-2" for="hls">
+                            .hls
                         </label>
                         <input class="form-check-input" type="radio" name="encode" value="hls" id="hls" checked>
                     </div>
                     <div class="form-check-inline">
-                        <label class="form-check-label mr-2" for="dash">
-                            dash
+                        <label class="form-check-label mb-1 mr-2" for="dash">
+                            .dash
                         </label>
                         <input class="form-check-input" type="radio" name="encode" value="dash" id="dash">
                     </div>
