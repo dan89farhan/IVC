@@ -34,7 +34,7 @@ function createWindow() {
                     }
                 },
                 {
-                    label: 'version IVC 1.1 - 2020 Freeware',
+                    label: 'Version IVC 1.1 - 2020 Freeware',
                     click: () => {
                         console.log('version IVC 1.1 - 2020 Freeware Clicked');
                     }
@@ -46,15 +46,21 @@ function createWindow() {
                     }
                 },
                 {
-                    label: 'check for update',
+                    label: 'Check for update',
                     click: () => {
                         console.log('check for update Clicked');
                     }
                 },
                 {
-                    label: 'Setting',
+                    label: 'Downloads',
                     click: () => {
                         openFileDialoge(win);
+                    }
+                },
+                {
+                    label: 'About',
+                    click: () => {
+                        showMessageBox(win);
                     }
                 },
                 {
@@ -62,20 +68,20 @@ function createWindow() {
                 },
             ]
         },
-        {
-            label: 'View',
-            submenu: [
-                { role: 'reload' },
-                { role: 'forcereload' },
-                { role: 'toggledevtools' },
-                { type: 'separator' },
-                { role: 'resetzoom' },
-                { role: 'zoomin' },
-                { role: 'zoomout' },
-                { type: 'separator' },
-                { role: 'togglefullscreen' }
-            ]
-        },
+        // {
+        //     label: 'View',
+        //     submenu: [
+        //         { role: 'reload' },
+        //         { role: 'forcereload' },
+        //         { role: 'toggledevtools' },
+        //         { type: 'separator' },
+        //         { role: 'resetzoom' },
+        //         { role: 'zoomin' },
+        //         { role: 'zoomout' },
+        //         { type: 'separator' },
+        //         { role: 'togglefullscreen' }
+        //     ]
+        // },
     ];
 
     const menu = Menu.buildFromTemplate(menuTemplate)
@@ -130,6 +136,24 @@ function openFileDialoge(win) {
     });
 }
 
+/** Show message box */
+function showMessageBox(win) {
+    let options = {
+        type: "info",
+        title: "About US",
+        message: `
+        Size	Resloution	Aspect Ratio
+        1080	1920x1080	1.77
+        720	1280x720	1.77
+        480	852x480	1.77
+        360	640x360	1.77
+        240	426x240	1.77
+        `,
+
+    }
+
+    let filePaths = dialog.showMessageBox(win, options);
+}
 
 autoUpdater.on('update-available', () => {
     mainWindow.webContents.send('update_available');
