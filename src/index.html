@@ -112,19 +112,21 @@
         }
 
         .wrapper {
-            width: 0; /*play with this value */
-            height: 0; /*play with this value */
-            border:none;
-            overflow:hidden;
+            width: 0;
+            /*play with this value */
+            height: 0;
+            /*play with this value */
+            border: none;
+            overflow: hidden;
         }
 
-        .browse{
+        .browse {
             width: 0;
-            opacity:0; /* set to .5 or something so you can better position it as an overlay then back to zero again after you're done */
+            opacity: 0;
+            /* set to .5 or something so you can better position it as an overlay then back to zero again after you're done */
             -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
             filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
         }
-
     </style>
 </head>
 
@@ -170,7 +172,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <a class="card-link" data-toggle="collapse" href="#collapseOne">
-                                    1080 <input type="checkbox" value="" name="resolution" id="res1080">
+                                    1080 <input type="checkbox" value="1" name="resolution1080" id="resolution1080">
                                 </a>
                             </div>
                             <div id="collapseOne" class="collapse show" data-parent="#accordion">
@@ -182,8 +184,9 @@
 
                                         <div class="d-flex justify-content-center">
                                             <div class="range-field w-100">
-                                                <input name="bitratemin1080" id="bitratemin1080" class="form-control-range"
-                                                    type="range" min="0" max="200" />
+                                                <input name="bitratemin1080" id="bitratemin1080"
+                                                    class="form-control-range" type="range" min="0" max="200"
+                                                    step="0.1" />
                                             </div>
                                         </div>
                                     </div>
@@ -195,8 +198,9 @@
 
                                         <div class="d-flex justify-content-center">
                                             <div class="range-field w-100">
-                                                <input name="bitratemax1080" id="bitratemax1080" class="form-control-range"
-                                                    type="range" min="0" max="200" />
+                                                <input name="bitratemax1080" id="bitratemax1080"
+                                                    class="form-control-range" type="range" min="0" max="200"
+                                                    step="0.1" />
                                             </div>
                                         </div>
                                     </div>
@@ -209,16 +213,19 @@
                                         <div class="d-flex justify-content-center">
                                             <div class="range-field w-100">
                                                 <input name="bitratebuffer1080" id="bitratebuffer1080"
-                                                    class="form-control-range" type="range" min="0" max="200" />
+                                                    class="form-control-range" type="range" min="0" max="200"
+                                                    step="0.1" />
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-sm radiocls form-group">
                                         <div class="form-group">
-                                            <label for="selectFolder1080" class="d-inline mr-2 wrapper">Output file name <input type="file" class="browse" name="selectFolder1080" id="selectFolder1080"></label>
-                                            <input type="text" name="outputFileName1080" class="form-control d-inline w-50"
-                                                id="outputFileName1080" aria-describedby="outputFileHelp">
+                                            <label for="selectFolder1080" class="d-inline mr-2 wrapper">Output file name
+                                            </label>
+                                            <input type="text" name="outputFileName1080"
+                                                class="form-control d-inline w-50" id="outputFileName1080"
+                                                aria-describedby="outputFileHelp">
                                         </div>
                                     </div>
                                 </div>
@@ -227,7 +234,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
-                                    720 <input type="checkbox" value="" name="resolution" id="res720">
+                                    720 <input type="checkbox" value="1" name="resolution720" id="resolution720">
                                 </a>
                             </div>
                             <div id="collapseTwo" class="collapse" data-parent="#accordion">
@@ -239,8 +246,9 @@
 
                                         <div class="d-flex justify-content-center">
                                             <div class="range-field w-100">
-                                                <input name="bitratemin720" id="bitratemin720" class="form-control-range"
-                                                    type="range" min="0" max="200" />
+                                                <input name="bitratemin720" id="bitratemin720"
+                                                    class="form-control-range" type="range" min="0" max="200"
+                                                    step="0.1" />
                                             </div>
                                         </div>
                                     </div>
@@ -252,8 +260,9 @@
 
                                         <div class="d-flex justify-content-center">
                                             <div class="range-field w-100">
-                                                <input name="bitratemax720" id="bitratemax720" class="form-control-range"
-                                                    type="range" min="0" max="200" />
+                                                <input name="bitratemax720" id="bitratemax720"
+                                                    class="form-control-range" type="range" min="0" max="200"
+                                                    step="0.1" />
                                             </div>
                                         </div>
                                     </div>
@@ -266,16 +275,19 @@
                                         <div class="d-flex justify-content-center">
                                             <div class="range-field w-100">
                                                 <input name="bitratebuffer720" id="bitratebuffer720"
-                                                    class="form-control-range" type="range" min="0" max="200" />
+                                                    class="form-control-range" type="range" min="0" max="200"
+                                                    step="0.1" />
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-sm radiocls form-group">
                                         <div class="form-group">
-                                            <label for="selectFolder720" class="d-inline mr-2 wrapper">Output file name <input type="file" class="browse" name="selectFolder720" id="selectFolder720"></label>
-                                            <input type="text" name="outputFileName720" class="form-control d-inline w-50"
-                                                id="outputFileName720" aria-describedby="outputFileHelp">
+                                            <label for="selectFolder720" class="d-inline mr-2 wrapper">Output file name
+                                            </label>
+                                            <input type="text" name="outputFileName720"
+                                                class="form-control d-inline w-50" id="outputFileName720"
+                                                aria-describedby="outputFileHelp">
                                         </div>
                                     </div>
                                 </div>
@@ -284,7 +296,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
-                                    640 <input type="checkbox" value="" name="resolution" id="res640">
+                                    640 <input type="checkbox" value="1" name="resolution640" id="resolution640">
                                 </a>
                             </div>
                             <div id="collapseThree" class="collapse" data-parent="#accordion">
@@ -296,8 +308,9 @@
 
                                         <div class="d-flex justify-content-center">
                                             <div class="range-field w-100">
-                                                <input name="bitratemin640" id="bitratemin640" class="form-control-range"
-                                                    type="range" min="0" max="200" />
+                                                <input name="bitratemin640" id="bitratemin640"
+                                                    class="form-control-range" type="range" min="0" max="200"
+                                                    step="0.1" />
                                             </div>
                                         </div>
                                     </div>
@@ -309,8 +322,9 @@
 
                                         <div class="d-flex justify-content-center">
                                             <div class="range-field w-100">
-                                                <input name="bitratemax640" id="bitratemax640" class="form-control-range"
-                                                    type="range" min="0" max="200" />
+                                                <input name="bitratemax640" id="bitratemax640"
+                                                    class="form-control-range" type="range" min="0" max="200"
+                                                    step="0.1" />
                                             </div>
                                         </div>
                                     </div>
@@ -323,16 +337,19 @@
                                         <div class="d-flex justify-content-center">
                                             <div class="range-field w-100">
                                                 <input name="bitratebuffer640" id="bitratebuffer640"
-                                                    class="form-control-range" type="range" min="0" max="200" />
+                                                    class="form-control-range" type="range" min="0" max="200"
+                                                    step="0.1" />
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-sm radiocls form-group">
                                         <div class="form-group">
-                                            <label for="selectFolder640" class="d-inline mr-2 wrapper">Output file name <input type="file" class="browse" name="selectFolder640" id="selectFolder640"></label>
-                                            <input type="text" name="outputFileName640" class="form-control d-inline w-50"
-                                                id="outputFileName640" aria-describedby="outputFileHelp">
+                                            <label for="selectFolder640" class="d-inline mr-2 wrapper">Output file name
+                                            </label>
+                                            <input type="text" name="outputFileName640"
+                                                class="form-control d-inline w-50" id="outputFileName640"
+                                                aria-describedby="outputFileHelp">
                                         </div>
                                     </div>
                                 </div>
@@ -341,7 +358,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
-                                    480 <input type="checkbox" value="" name="resolution" id="res480">
+                                    480 <input type="checkbox" value="1" name="resolution480" id="resolution480">
                                 </a>
                             </div>
                             <div id="collapseFour" class="collapse" data-parent="#accordion">
@@ -353,8 +370,9 @@
 
                                         <div class="d-flex justify-content-center">
                                             <div class="range-field w-100">
-                                                <input name="bitratemin480" id="bitratemin480" class="form-control-range"
-                                                    type="range" min="0" max="200" />
+                                                <input name="bitratemin480" id="bitratemin480"
+                                                    class="form-control-range" type="range" min="0" max="200"
+                                                    step="0.1" />
                                             </div>
                                         </div>
                                     </div>
@@ -366,8 +384,9 @@
 
                                         <div class="d-flex justify-content-center">
                                             <div class="range-field w-100">
-                                                <input name="bitratemax480" id="bitratemax480" class="form-control-range"
-                                                    type="range" min="0" max="200" />
+                                                <input name="bitratemax480" id="bitratemax480"
+                                                    class="form-control-range" type="range" min="0" max="200"
+                                                    step="0.1" />
                                             </div>
                                         </div>
                                     </div>
@@ -380,16 +399,19 @@
                                         <div class="d-flex justify-content-center">
                                             <div class="range-field w-100">
                                                 <input name="bitratebuffer480" id="bitratebuffer480"
-                                                    class="form-control-range" type="range" min="0" max="200" />
+                                                    class="form-control-range" type="range" min="0" max="200"
+                                                    step="0.1" />
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-sm radiocls form-group">
                                         <div class="form-group">
-                                            <label for="selectFolder480" class="d-inline mr-2 wrapper">Output file name <input type="file" class="browse" name="selectFolder480" id="selectFolder480"></label>
-                                            <input type="text" name="outputFileName" class="form-control d-inline w-50"
-                                                id="outputFileName" aria-describedby="outputFileHelp">
+                                            <label for="selectFolder480" class="d-inline mr-2 wrapper">Output file name
+                                            </label>
+                                            <input type="text" name="outputFileName480"
+                                                class="form-control d-inline w-50" id="outputFileName"
+                                                aria-describedby="outputFileHelp">
                                         </div>
                                     </div>
                                 </div>
@@ -398,7 +420,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <a class="collapsed card-link" data-toggle="collapse" href="#collapseFive">
-                                    240 <input type="checkbox" value="" name="resolution" id="res240">
+                                    240 <input type="checkbox" value="1" name="resolution240" id="resolution240">
                                 </a>
                             </div>
                             <div id="collapseFive" class="collapse" data-parent="#accordion">
@@ -410,8 +432,9 @@
 
                                         <div class="d-flex justify-content-center">
                                             <div class="range-field w-100">
-                                                <input name="bitratemin240" id="bitratemin240" class="form-control-range"
-                                                    type="range" min="0" max="200" />
+                                                <input name="bitratemin240" id="bitratemin240"
+                                                    class="form-control-range" type="range" min="0" max="200"
+                                                    step="0.1" />
                                             </div>
                                         </div>
                                     </div>
@@ -423,8 +446,9 @@
 
                                         <div class="d-flex justify-content-center">
                                             <div class="range-field w-100">
-                                                <input name="bitratemax240" id="bitratemax240" class="form-control-range"
-                                                    type="range" min="0" max="200" />
+                                                <input name="bitratemax240" id="bitratemax240"
+                                                    class="form-control-range" type="range" min="0" max="200"
+                                                    step="0.1" />
                                             </div>
                                         </div>
                                     </div>
@@ -437,16 +461,19 @@
                                         <div class="d-flex justify-content-center">
                                             <div class="range-field w-100">
                                                 <input name="bitratebuffer240" id="bitratebuffer240"
-                                                    class="form-control-range" type="range" min="0" max="200" />
+                                                    class="form-control-range" type="range" min="0" max="200"
+                                                    step="0.1" />
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-sm radiocls form-group">
                                         <div class="form-group">
-                                            <label for="selectFolder240" class="d-inline mr-2 wrapper">Output file name <input type="file" class="browse" name="selectFolder240" id="selectFolder240"></label>
-                                            <input type="text" name="outputFileName240" class="form-control d-inline w-50"
-                                                id="outputFileName240" aria-describedby="outputFileHelp">
+                                            <label for="selectFolder240" class="d-inline mr-2 wrapper">Output file name
+                                            </label>
+                                            <input type="text" name="outputFileName240"
+                                                class="form-control d-inline w-50" id="outputFileName240"
+                                                aria-describedby="outputFileHelp">
                                         </div>
                                     </div>
                                 </div>
@@ -524,18 +551,80 @@
 <script>
     $(`#convertVideoForm`).validate({
         errorClass: "text-danger",
+        debug: false,
         rules: {
-            outputFileName: {
-                required: true
-            },
             inputFile: {
                 required: true
             },
-            resolution: {
-                required: true
+            selectFolder1080: {
+                required: {
+                    depends: function (element) {
+                        return $(`#resolution1080`).is(':checked');
+                    }
+                }
             },
-            bitrate: {
-                required: true
+            outputFileName1080: {
+                required: {
+                    depends: function (element) {
+                        return $(`#resolution1080`).is(':checked');
+                    }
+                }
+            },
+            selectFolder720: {
+                required: {
+                    depends: function (element) {
+                        return $(`#resolution720`).is(':checked');
+                    }
+                }
+            },
+            outputFileName720: {
+                required: {
+                    depends: function (element) {
+                        return $(`#resolution720`).is(':checked');
+                    }
+                }
+            },
+            selectFolder640: {
+                required: {
+                    depends: function (element) {
+                        return $(`#resolution640`).is(':checked');
+                    }
+                }
+            },
+            outputFileName640: {
+                required: {
+                    depends: function (element) {
+                        return $(`#resolution640`).is(':checked');
+                    }
+                }
+            },
+            selectFolder480: {
+                required: {
+                    depends: function (element) {
+                        return $(`#resolution480`).is(':checked');
+                    }
+                }
+            },
+            outputFileName480: {
+                required: {
+                    depends: function (element) {
+                        return $(`#resolution480`).is(':checked');
+                    }
+                }
+            },
+            selectFolder240: {
+                required: {
+                    depends: function (element) {
+                        return $(`#resolution240`).is(':checked');
+                    }
+                }
+            },
+            outputFileName240: {
+                required: {
+                    depends: function (element) {
+                        return $(`#resolution240`).is(':checked');
+                    }
+                }
             },
             starttime: {
                 required: {
@@ -560,17 +649,38 @@
             }
         },
         messages: {
-            outputFileName: {
-                required: "*Output File is required"
-            },
             inputFile: {
                 required: "*Input File is required"
             },
-            resolution: {
-                required: "*At least one resolution is required"
+            selectFolder1080: {
+                required: "*Please select output directory",
             },
-            bitrate: {
-                required: "*Bit rate is required"
+            outputFileName1080: {
+                required: "*Please enter output file name",
+            },
+            selectFolder720: {
+                required: "*Please select output directory",
+            },
+            outputFileName720: {
+                required: "*Please enter output file name",
+            },
+            selectFolder640: {
+                required: "*Please select output directory",
+            },
+            outputFileName640: {
+                required: "*Please enter output file name",
+            },
+            selectFolder480: {
+                required: "*Please select output directory",
+            },
+            outputFileName480: {
+                required: "*Please enter output file name",
+            },
+            selectFolder240: {
+                required: "*Please select output directory",
+            },
+            outputFileName240: {
+                required: "*Please enter output file name",
             },
             starttime: {
                 required: "*Start time is required"

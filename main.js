@@ -4,10 +4,10 @@ const Store = require('electron-store');
 const { autoUpdater } = require('electron-updater');
 
 // Enable live reload for Electron too
-require('electron-reload')(__dirname, {
-    // Note that the path to electron may vary according to the main file
-    electron: require(`${__dirname}/node_modules/electron`)
-});
+// require('electron-reload')(__dirname, {
+//     // Note that the path to electron may vary according to the main file
+//     electron: require(`${__dirname}/node_modules/electron`)
+// });
 
 function createWindow() {
     const win = new BrowserWindow({
@@ -62,20 +62,20 @@ function createWindow() {
                 },
             ]
         },
-        // {
-        //     label: 'View',
-        //     submenu: [
-        //         { role: 'reload' },
-        //         { role: 'forcereload' },
-        //         { role: 'toggledevtools' },
-        //         { type: 'separator' },
-        //         { role: 'resetzoom' },
-        //         { role: 'zoomin' },
-        //         { role: 'zoomout' },
-        //         { type: 'separator' },
-        //         { role: 'togglefullscreen' }
-        //     ]
-        // },
+        {
+            label: 'View',
+            submenu: [
+                { role: 'reload' },
+                { role: 'forcereload' },
+                { role: 'toggledevtools' },
+                { type: 'separator' },
+                { role: 'resetzoom' },
+                { role: 'zoomin' },
+                { role: 'zoomout' },
+                { type: 'separator' },
+                { role: 'togglefullscreen' }
+            ]
+        },
     ];
 
     const menu = Menu.buildFromTemplate(menuTemplate)

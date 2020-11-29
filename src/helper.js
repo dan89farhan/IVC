@@ -11,6 +11,10 @@
 module.exports.getResolutions = function () {
     return [
         {
+            width: 320,
+            height: 240,
+        },
+        {
             width: 640,
             height: 360,
         },
