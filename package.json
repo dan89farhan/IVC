@@ -1,6 +1,6 @@
 {
   "name": "ivc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is Indian Video Converter",
   "main": "main.js",
   "scripts": {
