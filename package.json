@@ -40,6 +40,41 @@
     "log-to-file": "^2.0.2"
   },
   "config": {
-    "forge": "./forge.config.js"
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "ivc"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ],
+      "electronInstallerDMG": {},
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "dan89farhan",
+        "name": "IVC"
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "electronexample"
+      }
+    }
   }
 }

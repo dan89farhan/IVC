@@ -1,6 +1,6 @@
 module.exports = {
     "make_targets": {
-        "win32": [
+        "win64": [
             "squirrel"
         ],
         "darwin": [
