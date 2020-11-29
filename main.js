@@ -1,5 +1,9 @@
 const { app, BrowserWindow, Menu, dialog, ipcMain } = require('electron');
 const Store = require('electron-store');
+const isDev = require('electron-is-dev');
+const log = require('log-to-file');
+// import isDev from 'electron-is-dev';
+// import log from 'log-to-file';
 
 const { autoUpdater } = require('electron-updater');
 
@@ -92,9 +96,36 @@ function createWindow() {
     // win.webContents.openDevTools();
 
 
-    win.once('ready-to-show', () => {
-        autoUpdater.checkForUpdatesAndNotify();
-    });
+    // win.once('ready-to-show', () => {
+    //     autoUpdater.checkForUpdatesAndNotify();
+    // });
+
+    if (isDev) {
+        // Open the DevTools.
+        win.webContents.openDevTools()
+    } else {
+        // Handle squirrel event. Avoid calling for updates when install
+        if (require('electron-squirrel-startup')) {
+            log('Squirrel events handle', 'electron-example.log')
+            app.quit()
+            // Hack because app.quit() is not immediate
+            process.exit(0)
+        }
+
+        if (process.platform === 'win32') {
+            var cmd = process.argv[1]
+            if (cmd === '--squirrel-firstrun') {
+                log('Squirrel first run', 'electron-example.log')
+                return
+            }
+        }
+
+        // Check for updates
+        win.webContents.once("did-frame-finish-load", function (event) {
+            log('Ready to look for update', 'electron-example.log')
+            updater.init()
+        })
+    }
 }
 
 app.whenReady().then(createWindow)
@@ -156,12 +187,12 @@ function showMessageBox(win) {
 }
 
 autoUpdater.on('update-available', () => {
-    mainWindow.webContents.send('update_available');
+    win.webContents.send('update_available');
 });
 
 
 autoUpdater.on('update-downloaded', () => {
-    mainWindow.webContents.send('update_downloaded');
+    win.webContents.send('update_downloaded');
 });
 
 ipcMain.on('restart_app', () => {
