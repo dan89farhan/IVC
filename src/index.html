@@ -11,7 +11,10 @@
 
     <!-- Insert this line above script imports  -->
     <script>
-        if (typeof module === 'object') { window.module = module; module = undefined; }
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
     </script>
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -26,14 +29,16 @@
     <title>IVC</title>
 
     <style>
-        body{
-            background: rgb(255,239,205);
-            background: linear-gradient(338deg, rgba(255,239,205,1) 0%, rgba(218,254,255,1) 60%);
+        body {
+            background: rgb(255, 239, 205);
+            background: linear-gradient(338deg, rgba(255, 239, 205, 1) 0%, rgba(218, 254, 255, 1) 60%);
         }
-        *{
+
+        * {
             font-size: 14px;
             color: #000;
         }
+
         #notification {
             position: fixed;
             bottom: 20px;
@@ -48,14 +53,16 @@
         .hidden {
             display: none;
         }
-        .w-15{
+
+        .w-15 {
             width: 15%
         }
-        .form-control{
+
+        .form-control {
             height: 25px;
         }
 
-        input[type=range]{
+        input[type=range] {
             -webkit-appearance: none;
             padding: 5px 0;
             background-color: rgba(0, 0, 0, 0);
@@ -85,6 +92,39 @@
         input[type=range]:focus::-webkit-slider-runnable-track {
             background: #ccc;
         }
+
+        .card {
+            background-color: transparent;
+            border: none !important;
+        }
+
+        .card-header,
+        .card-body {
+            background-color: transparent !important;
+            border: none !important;
+            padding-top: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .card-body .col-sm {
+            padding: 0 !important
+        }
+
+        .wrapper {
+            width: 0; /*play with this value */
+            height: 0; /*play with this value */
+            border:none;
+            overflow:hidden;
+        }
+
+        .browse{
+            width: 0;
+            opacity:0; /* set to .5 or something so you can better position it as an overlay then back to zero again after you're done */
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+        }
+
     </style>
 </head>
 
@@ -92,13 +132,12 @@
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="./assets/img/india-flag.png" class="d-block w-100" 
-                    alt="India Flag">
+                <img src="./assets/img/india-flag.png" class="d-block w-100" alt="India Flag">
             </div>
         </div>
     </div>
     <div class="container">
-        
+
         <form id="convertVideoForm" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-sm">
@@ -116,98 +155,307 @@
                         </label>
                         <input class="form-check-input" type="radio" name="encode" value="hls" id="hls" checked>
                     </div>
-                    <div class="form-check-inline">
+                    <!-- <div class="form-check-inline">
                         <label class="form-check-label mb-1 mr-2" for="dash">
                             .dash
                         </label>
                         <input class="form-check-input" type="radio" name="encode" value="dash" id="dash">
-                    </div>
+                    </div> -->
                 </div>
+
+                <!-- accordion start -->
                 <div class="col-sm radiocls form-group">
-                    <label for="">Select Bit Rate Min: <span class="font-weight-bold text-primary bitrateminSpan"></span> mbps</label>
-                    
-                    <div class="d-flex justify-content-center">
-                        <div class="range-field w-100">
-                            <input name="bitratemin" id="bitratemin" class="form-control-range" type="range" min="0" max="200" />
+                    <label class="d-block">Select Resolution</label>
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                                    1080 <input type="checkbox" value="" name="resolution" id="res1080">
+                                </a>
+                            </div>
+                            <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="col-sm radiocls form-group">
+                                        <label for="">Select Bit Rate Min: <span
+                                                class="font-weight-bold text-primary bitrateminSpan1080"></span>
+                                            mbps</label>
+
+                                        <div class="d-flex justify-content-center">
+                                            <div class="range-field w-100">
+                                                <input name="bitratemin1080" id="bitratemin1080" class="form-control-range"
+                                                    type="range" min="0" max="200" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm radiocls form-group">
+                                        <label for="">Select Bit Rate Max: <span
+                                                class="font-weight-bold text-primary bitratemaxSpan1080"></span>
+                                            mbps</label>
+
+                                        <div class="d-flex justify-content-center">
+                                            <div class="range-field w-100">
+                                                <input name="bitratemax1080" id="bitratemax1080" class="form-control-range"
+                                                    type="range" min="0" max="200" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm radiocls form-group">
+                                        <label for="">Select Bit Rate Buffer: <span
+                                                class="font-weight-bold text-primary bitratebufferSpan1080"></span>
+                                            mbps</label>
+
+                                        <div class="d-flex justify-content-center">
+                                            <div class="range-field w-100">
+                                                <input name="bitratebuffer1080" id="bitratebuffer1080"
+                                                    class="form-control-range" type="range" min="0" max="200" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm radiocls form-group">
+                                        <div class="form-group">
+                                            <label for="selectFolder1080" class="d-inline mr-2 wrapper">Output file name <input type="file" class="browse" name="selectFolder1080" id="selectFolder1080"></label>
+                                            <input type="text" name="outputFileName1080" class="form-control d-inline w-50"
+                                                id="outputFileName1080" aria-describedby="outputFileHelp">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                                    720 <input type="checkbox" value="" name="resolution" id="res720">
+                                </a>
+                            </div>
+                            <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="col-sm radiocls form-group">
+                                        <label for="">Select Bit Rate Min: <span
+                                                class="font-weight-bold text-primary bitrateminSpan720"></span>
+                                            mbps</label>
+
+                                        <div class="d-flex justify-content-center">
+                                            <div class="range-field w-100">
+                                                <input name="bitratemin720" id="bitratemin720" class="form-control-range"
+                                                    type="range" min="0" max="200" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm radiocls form-group">
+                                        <label for="">Select Bit Rate Max: <span
+                                                class="font-weight-bold text-primary bitratemaxSpan720"></span>
+                                            mbps</label>
+
+                                        <div class="d-flex justify-content-center">
+                                            <div class="range-field w-100">
+                                                <input name="bitratemax720" id="bitratemax720" class="form-control-range"
+                                                    type="range" min="0" max="200" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm radiocls form-group">
+                                        <label for="">Select Bit Rate Buffer: <span
+                                                class="font-weight-bold text-primary bitratebufferSpan720"></span>
+                                            mbps</label>
+
+                                        <div class="d-flex justify-content-center">
+                                            <div class="range-field w-100">
+                                                <input name="bitratebuffer720" id="bitratebuffer720"
+                                                    class="form-control-range" type="range" min="0" max="200" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm radiocls form-group">
+                                        <div class="form-group">
+                                            <label for="selectFolder720" class="d-inline mr-2 wrapper">Output file name <input type="file" class="browse" name="selectFolder720" id="selectFolder720"></label>
+                                            <input type="text" name="outputFileName720" class="form-control d-inline w-50"
+                                                id="outputFileName720" aria-describedby="outputFileHelp">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+                                    640 <input type="checkbox" value="" name="resolution" id="res640">
+                                </a>
+                            </div>
+                            <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="col-sm radiocls form-group">
+                                        <label for="">Select Bit Rate Min: <span
+                                                class="font-weight-bold text-primary bitrateminSpan640"></span>
+                                            mbps</label>
+
+                                        <div class="d-flex justify-content-center">
+                                            <div class="range-field w-100">
+                                                <input name="bitratemin640" id="bitratemin640" class="form-control-range"
+                                                    type="range" min="0" max="200" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm radiocls form-group">
+                                        <label for="">Select Bit Rate Max: <span
+                                                class="font-weight-bold text-primary bitratemaxSpan640"></span>
+                                            mbps</label>
+
+                                        <div class="d-flex justify-content-center">
+                                            <div class="range-field w-100">
+                                                <input name="bitratemax640" id="bitratemax640" class="form-control-range"
+                                                    type="range" min="0" max="200" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm radiocls form-group">
+                                        <label for="">Select Bit Rate Buffer: <span
+                                                class="font-weight-bold text-primary bitratebufferSpan640"></span>
+                                            mbps</label>
+
+                                        <div class="d-flex justify-content-center">
+                                            <div class="range-field w-100">
+                                                <input name="bitratebuffer640" id="bitratebuffer640"
+                                                    class="form-control-range" type="range" min="0" max="200" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm radiocls form-group">
+                                        <div class="form-group">
+                                            <label for="selectFolder640" class="d-inline mr-2 wrapper">Output file name <input type="file" class="browse" name="selectFolder640" id="selectFolder640"></label>
+                                            <input type="text" name="outputFileName640" class="form-control d-inline w-50"
+                                                id="outputFileName640" aria-describedby="outputFileHelp">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
+                                    480 <input type="checkbox" value="" name="resolution" id="res480">
+                                </a>
+                            </div>
+                            <div id="collapseFour" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="col-sm radiocls form-group">
+                                        <label for="">Select Bit Rate Min: <span
+                                                class="font-weight-bold text-primary bitrateminSpan480"></span>
+                                            mbps</label>
+
+                                        <div class="d-flex justify-content-center">
+                                            <div class="range-field w-100">
+                                                <input name="bitratemin480" id="bitratemin480" class="form-control-range"
+                                                    type="range" min="0" max="200" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm radiocls form-group">
+                                        <label for="">Select Bit Rate Max: <span
+                                                class="font-weight-bold text-primary bitratemaxSpan480"></span>
+                                            mbps</label>
+
+                                        <div class="d-flex justify-content-center">
+                                            <div class="range-field w-100">
+                                                <input name="bitratemax480" id="bitratemax480" class="form-control-range"
+                                                    type="range" min="0" max="200" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm radiocls form-group">
+                                        <label for="">Select Bit Rate Buffer: <span
+                                                class="font-weight-bold text-primary bitratebufferSpan480"></span>
+                                            mbps</label>
+
+                                        <div class="d-flex justify-content-center">
+                                            <div class="range-field w-100">
+                                                <input name="bitratebuffer480" id="bitratebuffer480"
+                                                    class="form-control-range" type="range" min="0" max="200" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm radiocls form-group">
+                                        <div class="form-group">
+                                            <label for="selectFolder480" class="d-inline mr-2 wrapper">Output file name <input type="file" class="browse" name="selectFolder480" id="selectFolder480"></label>
+                                            <input type="text" name="outputFileName" class="form-control d-inline w-50"
+                                                id="outputFileName" aria-describedby="outputFileHelp">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="collapsed card-link" data-toggle="collapse" href="#collapseFive">
+                                    240 <input type="checkbox" value="" name="resolution" id="res240">
+                                </a>
+                            </div>
+                            <div id="collapseFive" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="col-sm radiocls form-group">
+                                        <label for="">Select Bit Rate Min: <span
+                                                class="font-weight-bold text-primary bitrateminSpan240"></span>
+                                            mbps</label>
+
+                                        <div class="d-flex justify-content-center">
+                                            <div class="range-field w-100">
+                                                <input name="bitratemin240" id="bitratemin240" class="form-control-range"
+                                                    type="range" min="0" max="200" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm radiocls form-group">
+                                        <label for="">Select Bit Rate Max: <span
+                                                class="font-weight-bold text-primary bitratemaxSpan240"></span>
+                                            mbps</label>
+
+                                        <div class="d-flex justify-content-center">
+                                            <div class="range-field w-100">
+                                                <input name="bitratemax240" id="bitratemax240" class="form-control-range"
+                                                    type="range" min="0" max="200" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm radiocls form-group">
+                                        <label for="">Select Bit Rate Buffer: <span
+                                                class="font-weight-bold text-primary bitratebufferSpan240"></span>
+                                            mbps</label>
+
+                                        <div class="d-flex justify-content-center">
+                                            <div class="range-field w-100">
+                                                <input name="bitratebuffer240" id="bitratebuffer240"
+                                                    class="form-control-range" type="range" min="0" max="200" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm radiocls form-group">
+                                        <div class="form-group">
+                                            <label for="selectFolder240" class="d-inline mr-2 wrapper">Output file name <input type="file" class="browse" name="selectFolder240" id="selectFolder240"></label>
+                                            <input type="text" name="outputFileName240" class="form-control d-inline w-50"
+                                                id="outputFileName240" aria-describedby="outputFileHelp">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- accordion end -->
 
-                <div class="col-sm radiocls form-group">
-                    <label for="">Select Bit Rate Max: <span class="font-weight-bold text-primary bitratemaxSpan"></span> mbps</label>
-                    
-                    <div class="d-flex justify-content-center">
-                        <div class="range-field w-100">
-                            <input name="bitratemax" id="bitratemax" class="form-control-range" type="range" min="0" max="200" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm radiocls form-group">
-                    <label for="">Select Bit Rate Buffer: <span class="font-weight-bold text-primary bitratebufferSpan"></span> mbps</label>
-                    
-                    <div class="d-flex justify-content-center">
-                        <div class="range-field w-100">
-                            <input name="bitratebuffer" id="bitratebuffer" class="form-control-range" type="range" min="0"
-                                max="200" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm radiocls form-group">
-                    <label for="" class="d-block">Select Resolution</label>
-                    <div class="form-check-inline">
-                        <label class="form-check-label mr-1" for="defaultCheck360">
-                            360
-                        </label>
-                        <input class="form-check-input" type="radio" name="resolution" value="0" id="defaultCheck360">
-                    </div>
-                    <div class="form-check-inline">
-                        <label class="form-check-label mr-1" for="defaultCheck">
-                            640
-                        </label>
-                        <input class="form-check-input" type="radio" name="resolution" value="1" id="defaultCheck1">
-                    </div>
-                    <div class="form-check-inline">
-                        <label class="form-check-label mr-1" for="defaultCheck720">
-                            720
-                        </label>
-                        <input class="form-check-input" type="radio" name="resolution" value="2" id="defaultCheck720">
-                    </div>
-                    <div class="form-check-inline">
-                        <label class="form-check-label mr-1" for="defaultCheck">
-                            1080
-                        </label>
-                        <input class="form-check-input" type="radio" name="resolution" value="3" id="defaultCheck1080">
-                    </div>
-                </div>
-                <div class="col-sm radiocls form-group">
-                    <label for="" class="d-block">Select Bitrate</label>
-                    <div class="form-check-inline">
-                        <label class="form-check-label mr-1" for="bitrate5000">
-                            5000
-                        </label>
-                        <input class="form-check-input" type="radio" name="bitrate" value="0" id="bitrate5000">
-                    </div>
-                    <div class="form-check-inline">
-                        <label class="form-check-label mr-1" for="bitrate2800">
-                            2800
-                        </label>
-                        <input class="form-check-input" type="radio" name="bitrate" value="1" id="bitrate2800">
-                    </div>
-                    <div class="form-check-inline">
-                        <label class="form-check-label mr-1" for="bitrate1400">
-                            1400
-                        </label>
-                        <input class="form-check-input" type="radio" name="bitrate" value="2" id="bitrate1400">
-                    </div>
-                    <div class="form-check-inline">
-                        <label class="form-check-label mr-1" for="bitratek800">
-                            800
-                        </label>
-                        <input class="form-check-input" type="radio" name="bitrate" value="3" id="bitratek800">
-                    </div>
-                </div>
             </div>
 
             <div class="row">
@@ -232,16 +480,8 @@
                         </label>
                         <input class="form-check-input mr-3" type="checkbox" name="thumbnail" id="thumbnail" value="1">
                         <label for="totalNumberOfFrames" class="mr-2">Total Number of Frames</label>
-                        <input type="text" name="totalNumberOfFrames" class="form-control w-15" id="totalNumberOfFrames">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm">
-                    <div class="form-group">
-                        <label for="outputFileName" class="d-inline mr-2">Output file name</label>
-                        <input type="text" name="outputFileName" class="form-control d-inline w-50" id="outputFileName"
-                            aria-describedby="outputFileHelp">
+                        <input type="text" name="totalNumberOfFrames" class="form-control w-15"
+                            id="totalNumberOfFrames">
                     </div>
                 </div>
             </div>
@@ -327,7 +567,7 @@
                 required: "*Input File is required"
             },
             resolution: {
-                required: "*Resolution is required"
+                required: "*At least one resolution is required"
             },
             bitrate: {
                 required: "*Bit rate is required"
@@ -345,8 +585,7 @@
         errorPlacement: function (error, element) {
             if (element.is(":radio")) {
                 error.appendTo(element.parents('.radiocls'));
-            }
-            else { // This is the default behavior 
+            } else { // This is the default behavior 
                 error.insertAfter(element);
             }
         },
@@ -372,25 +611,109 @@
             $valueSpan.html($value.val());
         });
 
-        const $bitrateminSpan = $('.bitrateminSpan');
-        const $bitratemin = $('#bitratemin');
-        $bitrateminSpan.html($bitratemin.val());
-        $bitratemin.on('input change', () => {
-            $bitrateminSpan.html($bitratemin.val());
+        const $bitrateminSpan1080 = $('.bitrateminSpan1080');
+        const $bitratemin1080 = $('#bitratemin1080');
+        $bitrateminSpan1080.html($bitratemin1080.val());
+        $bitratemin1080.on('input change', () => {
+            $bitrateminSpan1080.html($bitratemin1080.val());
         });
 
-        const $bitratemanSpan = $('.bitratemaxSpan');
-        const $bitratemax = $('#bitratemax');
-        $bitratemanSpan.html($bitratemax.val());
-        $bitratemax.on('input change', () => {
-            $bitratemanSpan.html($bitratemax.val());
+        const $bitratemanSpan1080 = $('.bitratemaxSpan1080');
+        const $bitratemax1080 = $('#bitratemax1080');
+        $bitratemanSpan1080.html($bitratemax1080.val());
+        $bitratemax1080.on('input change', () => {
+            $bitratemanSpan1080.html($bitratemax1080.val());
         });
 
-        const $bitratebufferSpan = $('.bitratebufferSpan');
-        const $bitratebuffer = $('#bitratebuffer');
-        $bitratebufferSpan.html($bitratebuffer.val());
-        $bitratebuffer.on('input change', () => {
-            $bitratebufferSpan.html($bitratebuffer.val());
+        const $bitratebufferSpan1080 = $('.bitratebufferSpan1080');
+        const $bitratebuffer1080 = $('#bitratebuffer1080');
+        $bitratebufferSpan1080.html($bitratebuffer1080.val());
+        $bitratebuffer1080.on('input change', () => {
+            $bitratebufferSpan1080.html($bitratebuffer1080.val());
+        });
+
+        const $bitrateminSpan720 = $('.bitrateminSpan720');
+        const $bitratemin720 = $('#bitratemin720');
+        $bitrateminSpan720.html($bitratemin720.val());
+        $bitratemin720.on('input change', () => {
+            $bitrateminSpan720.html($bitratemin720.val());
+        });
+
+        const $bitratemanSpan720 = $('.bitratemaxSpan720');
+        const $bitratemax720 = $('#bitratemax720');
+        $bitratemanSpan720.html($bitratemax720.val());
+        $bitratemax720.on('input change', () => {
+            $bitratemanSpan720.html($bitratemax720.val());
+        });
+
+        const $bitratebufferSpan720 = $('.bitratebufferSpan720');
+        const $bitratebuffer720 = $('#bitratebuffer720');
+        $bitratebufferSpan720.html($bitratebuffer720.val());
+        $bitratebuffer720.on('input change', () => {
+            $bitratebufferSpan720.html($bitratebuffer720.val());
+        });
+
+        const $bitrateminSpan640 = $('.bitrateminSpan640');
+        const $bitratemin640 = $('#bitratemin640');
+        $bitrateminSpan640.html($bitratemin640.val());
+        $bitratemin640.on('input change', () => {
+            $bitrateminSpan640.html($bitratemin640.val());
+        });
+
+        const $bitratemanSpan640 = $('.bitratemaxSpan640');
+        const $bitratemax640 = $('#bitratemax640');
+        $bitratemanSpan640.html($bitratemax640.val());
+        $bitratemax640.on('input change', () => {
+            $bitratemanSpan640.html($bitratemax640.val());
+        });
+
+        const $bitratebufferSpan640 = $('.bitratebufferSpan640');
+        const $bitratebuffer640 = $('#bitratebuffer640');
+        $bitratebufferSpan640.html($bitratebuffer640.val());
+        $bitratebuffer640.on('input change', () => {
+            $bitratebufferSpan640.html($bitratebuffer640.val());
+        });
+
+        const $bitrateminSpan480 = $('.bitrateminSpan480');
+        const $bitratemin480 = $('#bitratemin480');
+        $bitrateminSpan480.html($bitratemin480.val());
+        $bitratemin480.on('input change', () => {
+            $bitrateminSpan480.html($bitratemin480.val());
+        });
+
+        const $bitratemanSpan480 = $('.bitratemaxSpan480');
+        const $bitratemax480 = $('#bitratemax480');
+        $bitratemanSpan480.html($bitratemax480.val());
+        $bitratemax480.on('input change', () => {
+            $bitratemanSpan480.html($bitratemax480.val());
+        });
+
+        const $bitratebufferSpan480 = $('.bitratebufferSpan480');
+        const $bitratebuffer480 = $('#bitratebuffer480');
+        $bitratebufferSpan480.html($bitratebuffer480.val());
+        $bitratebuffer480.on('input change', () => {
+            $bitratebufferSpan480.html($bitratebuffer480.val());
+        });
+
+        const $bitrateminSpan240 = $('.bitrateminSpan240');
+        const $bitratemin240 = $('#bitratemin240');
+        $bitrateminSpan240.html($bitratemin240.val());
+        $bitratemin240.on('input change', () => {
+            $bitrateminSpan240.html($bitratemin240.val());
+        });
+
+        const $bitratemanSpan240 = $('.bitratemaxSpan240');
+        const $bitratemax240 = $('#bitratemax240');
+        $bitratemanSpan240.html($bitratemax240.val());
+        $bitratemax240.on('input change', () => {
+            $bitratemanSpan240.html($bitratemax240.val());
+        });
+
+        const $bitratebufferSpan240 = $('.bitratebufferSpan240');
+        const $bitratebuffer240 = $('#bitratebuffer240');
+        $bitratebufferSpan240.html($bitratebuffer240.val());
+        $bitratebuffer240.on('input change', () => {
+            $bitratebufferSpan240.html($bitratebuffer240.val());
         });
     });
 </script>
@@ -398,6 +721,39 @@
 <!-- Insert this line after script imports -->
 <script>
     if (window.module) module = window.module;
+
+    $('.collapse').collapse();
+
+    $('.card-header a input[type=checkbox]').on('click', function (e) {
+        e.stopPropagation();
+        $(this).parent().trigger('click'); // <---  HERE
+    });
+
+    $('#collapseOne').on('show.bs.collapse', function (e) {
+        if (!$('.card-header a input[type=checkbox]').is(':checked')) {
+            return false;
+        }
+    });
+    $('#collapseTwo').on('show.bs.collapse', function (e) {
+        if (!$('.card-header a input[type=checkbox]').is(':checked')) {
+            return false;
+        }
+    });
+    $('#collapseThree').on('show.bs.collapse', function (e) {
+        if (!$('.card-header a input[type=checkbox]').is(':checked')) {
+            return false;
+        }
+    });
+    $('#collapseFour').on('show.bs.collapse', function (e) {
+        if (!$('.card-header a input[type=checkbox]').is(':checked')) {
+            return false;
+        }
+    });
+    $('#collapseFive').on('show.bs.collapse', function (e) {
+        if (!$('.card-header a input[type=checkbox]').is(':checked')) {
+            return false;
+        }
+    });
 </script>
 
 </html>
