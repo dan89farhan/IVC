@@ -29,6 +29,7 @@ function selectFolder1080() {
 function convertVideo(data) {
     console.log(data);
     // return;
+    let transcoder = data.trancoder;
     let resolution1080 = data.resolution1080;
     let resolution720 = data.resolution720;
     let resolution640 = data.resolution640;
@@ -62,11 +63,11 @@ function convertVideo(data) {
             .outputOptions([
                 `-vf scale=w=${resolution.width}:h=${resolution.height}:force_original_aspect_ratio=decrease`,
                 '-strict -2',
-                '-c:v h264',
+                `-c:v ${transcoder}`,
                 '-hls_time 4',
-                `-b:v ${bitratemin1080}k`,
-                `-maxrate ${bitratemax1080}k`,
-                `-bufsize ${bitratebuffer1080}k`,
+                `-b:v ${bitratemin1080 * 1000}k`,
+                `-maxrate ${bitratemax1080 * 1000}k`,
+                `-bufsize ${bitratebuffer1080 * 1000}k`,
                 `-b:a 192k`,
                 `-hls_time 4`,
                 `-hls_list_size 0`,
@@ -112,11 +113,11 @@ function convertVideo(data) {
             .outputOptions([
                 `-vf scale=w=${resolution.width}:h=${resolution.height}:force_original_aspect_ratio=decrease`,
                 '-strict -2',
-                '-c:v h264',
+                `-c:v ${transcoder}`,
                 '-hls_time 4',
-                `-b:v ${bitratemin720}k`,
-                `-maxrate ${bitratemax720}k`,
-                `-bufsize ${bitratebuffer720}k`,
+                `-b:v ${bitratemin720 * 1000}k`,
+                `-maxrate ${bitratemax720 * 1000}k`,
+                `-bufsize ${bitratebuffer720 * 1000}k`,
                 `-b:a 192k`,
                 `-hls_time 4`,
                 `-hls_list_size 0`,
@@ -162,11 +163,11 @@ function convertVideo(data) {
             .outputOptions([
                 `-vf scale=w=${resolution.width}:h=${resolution.height}:force_original_aspect_ratio=decrease`,
                 '-strict -2',
-                '-c:v h264',
+                `-c:v ${transcoder}`,
                 '-hls_time 4',
-                `-b:v ${bitratemin640}k`,
-                `-maxrate ${bitratemax640}k`,
-                `-bufsize ${bitratebuffer640}k`,
+                `-b:v ${bitratemin640 * 1000}k`,
+                `-maxrate ${bitratemax640 * 1000}k`,
+                `-bufsize ${bitratebuffer640 * 1000}k`,
                 `-b:a 192k`,
                 `-hls_time 4`,
                 `-hls_list_size 0`,
@@ -212,11 +213,11 @@ function convertVideo(data) {
             .outputOptions([
                 `-vf scale=w=${resolution.width}:h=${resolution.height}:force_original_aspect_ratio=decrease`,
                 '-strict -2',
-                '-c:v h264',
+                `-c:v ${transcoder}`,
                 '-hls_time 4',
-                `-b:v ${bitratemin480}k`,
-                `-maxrate ${bitratemax480}k`,
-                `-bufsize ${bitratebuffer480}k`,
+                `-b:v ${bitratemin480 * 1000}k`,
+                `-maxrate ${bitratemax480 * 1000}k`,
+                `-bufsize ${bitratebuffer480 * 1000}k`,
                 `-b:a 192k`,
                 `-hls_time 4`,
                 `-hls_list_size 0`,
@@ -262,11 +263,11 @@ function convertVideo(data) {
             .outputOptions([
                 `-vf scale=w=${resolution.width}:h=${resolution.height}:force_original_aspect_ratio=decrease`,
                 '-strict -2',
-                '-c:v h264',
+                `-c:v ${transcoder}`,
                 '-hls_time 4',
-                `-b:v ${bitratemin240}k`,
-                `-maxrate ${bitratemax240}k`,
-                `-bufsize ${bitratebuffer240}k`,
+                `-b:v ${bitratemin240 * 1000}k`,
+                `-maxrate ${bitratemax240 * 1000}k`,
+                `-bufsize ${bitratebuffer240 * 1000}k`,
                 `-b:a 192k`,
                 `-hls_time 4`,
                 `-hls_list_size 0`,

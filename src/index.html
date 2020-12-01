@@ -26,7 +26,7 @@
     <script src="app.js"></script>
 
 
-    <title>Indian video HLs transcoder</title>
+    <title>Indian Video HLS Transcoder</title>
 
     <style>
         body {
@@ -157,12 +157,22 @@
                         </label>
                         <input class="form-check-input" type="radio" name="encode" value="hls" id="hls" checked>
                     </div>
-                    <!-- <div class="form-check-inline">
-                        <label class="form-check-label mb-1 mr-2" for="dash">
-                            .dash
+                </div>
+
+                <div class="col-sm radiocls form-group">
+                    <label for="" class="mr-2">Select Transcoder</label>
+                    <div class="form-check-inline">
+                        <label class="form-check-label mb-1 mr-2" for="h264">
+                            .264
                         </label>
-                        <input class="form-check-input" type="radio" name="encode" value="dash" id="dash">
-                    </div> -->
+                        <input class="form-check-input" type="radio" name="trancoder" value="h264" id="h264" checked>
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label mb-1 mr-2" for="t_265">
+                            .265
+                        </label>
+                        <input class="form-check-input" type="radio" name="trancoder" value="libx265" id="t_265">
+                    </div>
                 </div>
 
                 <!-- accordion start -->
