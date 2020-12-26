@@ -39,7 +39,7 @@ function createWindow() {
                     }
                 },
                 {
-                    label: 'Version IVC 1.1 - 2020 Freeware',
+                    label: 'Version IVT 1.0.4 - 2020 Freeware',
                     click: () => {
                         console.log('version IVC 1.1 - 2020 Freeware Clicked');
                     }
