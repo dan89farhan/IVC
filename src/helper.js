@@ -19,8 +19,8 @@ module.exports.getResolutions = function () {
             height: 360,
         },
         {
-            width: 842,
-            height: 640,
+            width: 854,
+            height: 480,
         },
         {
             width: 1280,

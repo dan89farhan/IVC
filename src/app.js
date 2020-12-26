@@ -27,13 +27,13 @@ function selectFolder1080() {
 // console.log('File used for Persisting Data - ' + settings.file());
 
 function convertVideo(data) {
-    console.log(data);
+    console.log('data', data);
     // return;
     let transcoder = data.trancoder;
     let resolution1080 = data.resolution1080;
     let resolution720 = data.resolution720;
-    let resolution640 = data.resolution640;
     let resolution480 = data.resolution480;
+    let resolution360 = data.resolution360;
     let resolution240 = data.resolution240;
     let gif = data.gif;
     let thumbnail = data.thumbnail;
@@ -71,7 +71,7 @@ function convertVideo(data) {
                 `-b:a 192k`,
                 `-hls_time 4`,
                 `-hls_list_size 0`,
-                `-hls_segment_filename ${dirLocation}/${folderName}/%03d.ts`,
+                `-hls_segment_filename ${dirLocation}/${folderName}/1080p%03d.ts`,
             ])
             .on('progress', function (progress) {
                 // console.log('Processing: ' + progress.percent + '% done');
@@ -121,57 +121,7 @@ function convertVideo(data) {
                 `-b:a 192k`,
                 `-hls_time 4`,
                 `-hls_list_size 0`,
-                `-hls_segment_filename ${dirLocation}/${folderName}/%03d.ts`,
-            ])
-            .on('progress', function (progress) {
-                // console.log('Processing: ' + progress.percent + '% done');
-                outputLogFile.append(JSON.stringify(progress));
-                outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
-            })
-            .on('error', function (err) {
-                console.log('An error occurred: ' + err.message);
-                // alert(`Error Occured ${err.message}`);
-                outputLogFile.append(err.message);
-                outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
-            })
-            .on('end', function () {
-                console.log('Processing finished !');
-                outputLogFile.append('\n');
-                outputLogFile.append('Processing finished !');
-                outputLogFile.append('\n');
-                outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
-            })
-            .save(`${dirLocation}/${folderName}/${outputFileName}`);
-    }
-    if (resolution640) {
-        const resolutionIndex = 2;
-        const resolution = resolutions[resolutionIndex];
-        const bitratemin640 = data.bitratemin640;
-        const bitratemax640 = data.bitratemax640;
-        const bitratebuffer640 = data.bitratebuffer640;
-
-        let outputFileName = data.outputFileName640 + '.m3u8';
-        let output = outputFileName.split('.');
-        let folderName = output[0];
-        let savePath = `${dirLocation}/${folderName}`;
-
-        if (!fs.existsSync(savePath)) {
-            fs.mkdirSync(savePath);
-        }
-
-        let command = ffmpeg(data.inputFile.path)
-            .outputOptions([
-                `-vf scale=w=${resolution.width}:h=${resolution.height}:force_original_aspect_ratio=decrease`,
-                '-strict -2',
-                `-c:v ${transcoder}`,
-                '-hls_time 4',
-                `-b:v ${bitratemin640 * 1000}k`,
-                `-maxrate ${bitratemax640 * 1000}k`,
-                `-bufsize ${bitratebuffer640 * 1000}k`,
-                `-b:a 192k`,
-                `-hls_time 4`,
-                `-hls_list_size 0`,
-                `-hls_segment_filename ${dirLocation}/${folderName}/%03d.ts`,
+                `-hls_segment_filename ${dirLocation}/${folderName}/720p%03d.ts`,
             ])
             .on('progress', function (progress) {
                 // console.log('Processing: ' + progress.percent + '% done');
@@ -194,7 +144,7 @@ function convertVideo(data) {
             .save(`${dirLocation}/${folderName}/${outputFileName}`);
     }
     if (resolution480) {
-        const resolutionIndex = 1;
+        const resolutionIndex = 2;
         const resolution = resolutions[resolutionIndex];
         const bitratemin480 = data.bitratemin480;
         const bitratemax480 = data.bitratemax480;
@@ -221,7 +171,57 @@ function convertVideo(data) {
                 `-b:a 192k`,
                 `-hls_time 4`,
                 `-hls_list_size 0`,
-                `-hls_segment_filename ${dirLocation}/${folderName}/%03d.ts`,
+                `-hls_segment_filename ${dirLocation}/${folderName}/480p%03d.ts`,
+            ])
+            .on('progress', function (progress) {
+                // console.log('Processing: ' + progress.percent + '% done');
+                outputLogFile.append(JSON.stringify(progress));
+                outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
+            })
+            .on('error', function (err) {
+                console.log('An error occurred: ' + err.message);
+                // alert(`Error Occured ${err.message}`);
+                outputLogFile.append(err.message);
+                outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
+            })
+            .on('end', function () {
+                console.log('Processing finished !');
+                outputLogFile.append('\n');
+                outputLogFile.append('Processing finished !');
+                outputLogFile.append('\n');
+                outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
+            })
+            .save(`${dirLocation}/${folderName}/${outputFileName}`);
+    }
+    if (resolution360) {
+        const resolutionIndex = 1;
+        const resolution = resolutions[resolutionIndex];
+        const bitratemin360 = data.bitratemin360;
+        const bitratemax360 = data.bitratemax360;
+        const bitratebuffer360 = data.bitratebuffer360;
+
+        let outputFileName = data.outputFileName360 + '.m3u8';
+        let output = outputFileName.split('.');
+        let folderName = output[0];
+        let savePath = `${dirLocation}/${folderName}`;
+
+        if (!fs.existsSync(savePath)) {
+            fs.mkdirSync(savePath);
+        }
+
+        let command = ffmpeg(data.inputFile.path)
+            .outputOptions([
+                `-vf scale=w=${resolution.width}:h=${resolution.height}:force_original_aspect_ratio=decrease`,
+                '-strict -2',
+                `-c:v ${transcoder}`,
+                '-hls_time 4',
+                `-b:v ${bitratemin360 * 1000}k`,
+                `-maxrate ${bitratemax360 * 1000}k`,
+                `-bufsize ${bitratebuffer360 * 1000}k`,
+                `-b:a 192k`,
+                `-hls_time 4`,
+                `-hls_list_size 0`,
+                `-hls_segment_filename ${dirLocation}/${folderName}/360p%03d.ts`,
             ])
             .on('progress', function (progress) {
                 // console.log('Processing: ' + progress.percent + '% done');
@@ -271,7 +271,7 @@ function convertVideo(data) {
                 `-b:a 192k`,
                 `-hls_time 4`,
                 `-hls_list_size 0`,
-                `-hls_segment_filename ${dirLocation}/${folderName}/%03d.ts`,
+                `-hls_segment_filename ${dirLocation}/${folderName}/240p%03d.ts`,
             ])
             .on('progress', function (progress) {
                 // console.log('Processing: ' + progress.percent + '% done');
