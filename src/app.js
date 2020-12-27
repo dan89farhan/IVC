@@ -73,6 +73,11 @@ function convertVideo(data) {
                 `-hls_list_size 0`,
                 `-hls_segment_filename ${dirLocation}/${folderName}/1080p%03d.ts`,
             ])
+            .on('start', function(commandLine){
+                outputLogFile.append("\nGenerated Command\n");
+                outputLogFile.append(JSON.stringify(commandLine));
+                outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
+            })
             .on('progress', function (progress) {
                 // console.log('Processing: ' + progress.percent + '% done');
                 outputLogFile.append(JSON.stringify(progress));
@@ -123,6 +128,11 @@ function convertVideo(data) {
                 `-hls_list_size 0`,
                 `-hls_segment_filename ${dirLocation}/${folderName}/720p%03d.ts`,
             ])
+            .on('start', function(commandLine){
+                outputLogFile.append("\nGenerated Command\n");
+                outputLogFile.append(JSON.stringify(commandLine));
+                outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
+            })
             .on('progress', function (progress) {
                 // console.log('Processing: ' + progress.percent + '% done');
                 outputLogFile.append(JSON.stringify(progress));
@@ -173,6 +183,11 @@ function convertVideo(data) {
                 `-hls_list_size 0`,
                 `-hls_segment_filename ${dirLocation}/${folderName}/480p%03d.ts`,
             ])
+            .on('start', function(commandLine){
+                outputLogFile.append("\nGenerated Command\n");
+                outputLogFile.append(JSON.stringify(commandLine));
+                outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
+            })
             .on('progress', function (progress) {
                 // console.log('Processing: ' + progress.percent + '% done');
                 outputLogFile.append(JSON.stringify(progress));
@@ -223,6 +238,11 @@ function convertVideo(data) {
                 `-hls_list_size 0`,
                 `-hls_segment_filename ${dirLocation}/${folderName}/360p%03d.ts`,
             ])
+            .on('start', function(commandLine){
+                outputLogFile.append("\nGenerated Command\n");
+                outputLogFile.append(JSON.stringify(commandLine));
+                outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
+            })
             .on('progress', function (progress) {
                 // console.log('Processing: ' + progress.percent + '% done');
                 outputLogFile.append(JSON.stringify(progress));
@@ -273,6 +293,11 @@ function convertVideo(data) {
                 `-hls_list_size 0`,
                 `-hls_segment_filename ${dirLocation}/${folderName}/240p%03d.ts`,
             ])
+            .on('start', function(commandLine){
+                outputLogFile.append("\nGenerated Command\n");
+                outputLogFile.append(JSON.stringify(commandLine));
+                outputLogFile.scrollTop(outputLogFile[0].scrollHeight);
+            })
             .on('progress', function (progress) {
                 // console.log('Processing: ' + progress.percent + '% done');
                 outputLogFile.append(JSON.stringify(progress));
