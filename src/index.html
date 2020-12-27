@@ -26,7 +26,7 @@
     <script src="app.js"></script>
 
 
-    <title>IVT</title>
+    <title>Indian Video Transcoder</title>
 
     <style>
         body {
@@ -594,17 +594,17 @@
                     }
                 }
             },
-            selectFolder640: {
+            selectFolder360: {
                 required: {
                     depends: function (element) {
-                        return $(`#resolution640`).is(':checked');
+                        return $(`#resolution360`).is(':checked');
                     }
                 }
             },
-            outputFileName640: {
+            outputFileName360: {
                 required: {
                     depends: function (element) {
-                        return $(`#resolution640`).is(':checked');
+                        return $(`#resolution360`).is(':checked');
                     }
                 }
             },
@@ -674,10 +674,10 @@
             outputFileName720: {
                 required: "*Please enter output file name",
             },
-            selectFolder640: {
+            selectFolder360: {
                 required: "*Please select output directory",
             },
-            outputFileName640: {
+            outputFileName360: {
                 required: "*Please enter output file name",
             },
             selectFolder480: {
@@ -773,27 +773,6 @@
             $bitratebufferSpan720.html($bitratebuffer720.val());
         });
 
-        const $bitrateminSpan640 = $('.bitrateminSpan640');
-        const $bitratemin640 = $('#bitratemin640');
-        $bitrateminSpan640.html($bitratemin640.val());
-        $bitratemin640.on('input change', () => {
-            $bitrateminSpan640.html($bitratemin640.val());
-        });
-
-        const $bitratemanSpan640 = $('.bitratemaxSpan640');
-        const $bitratemax640 = $('#bitratemax640');
-        $bitratemanSpan640.html($bitratemax640.val());
-        $bitratemax640.on('input change', () => {
-            $bitratemanSpan640.html($bitratemax640.val());
-        });
-
-        const $bitratebufferSpan640 = $('.bitratebufferSpan640');
-        const $bitratebuffer640 = $('#bitratebuffer640');
-        $bitratebufferSpan640.html($bitratebuffer640.val());
-        $bitratebuffer640.on('input change', () => {
-            $bitratebufferSpan640.html($bitratebuffer640.val());
-        });
-
         const $bitrateminSpan480 = $('.bitrateminSpan480');
         const $bitratemin480 = $('#bitratemin480');
         $bitrateminSpan480.html($bitratemin480.val());
@@ -813,6 +792,27 @@
         $bitratebufferSpan480.html($bitratebuffer480.val());
         $bitratebuffer480.on('input change', () => {
             $bitratebufferSpan480.html($bitratebuffer480.val());
+        });
+
+        const $bitrateminSpan360 = $('.bitrateminSpan360');
+        const $bitratemin360 = $('#bitratemin360');
+        $bitrateminSpan360.html($bitratemin360.val());
+        $bitratemin360.on('input change', () => {
+            $bitrateminSpan360.html($bitratemin360.val());
+        });
+
+        const $bitratemanSpan360 = $('.bitratemaxSpan360');
+        const $bitratemax360 = $('#bitratemax360');
+        $bitratemanSpan360.html($bitratemax360.val());
+        $bitratemax360.on('input change', () => {
+            $bitratemanSpan360.html($bitratemax360.val());
+        });
+
+        const $bitratebufferSpan360 = $('.bitratebufferSpan360');
+        const $bitratebuffer360 = $('#bitratebuffer360');
+        $bitratebufferSpan360.html($bitratebuffer360.val());
+        $bitratebuffer360.on('input change', () => {
+            $bitratebufferSpan360.html($bitratebuffer360.val());
         });
 
         const $bitrateminSpan240 = $('.bitrateminSpan240');
