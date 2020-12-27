@@ -172,14 +172,29 @@ function openFileDialoge(win) {
 function showMessageBox(win) {
     let options = {
         type: "info",
-        title: "About US",
+        title: "About US IVT",
         message: `
-        Size	Resloution	Aspect Ratio
-        1080	1920x1080	1.77
-        720	1280x720	1.77
-        480	852x480	1.77
-        360	640x360	1.77
-        240	426x240	1.77
+        Hi,
+
+        The IVT (Indian Video Transcoder) is a freeware software and developed by Ranayas (India), this software can convert any format to HLS or Mpeg dash files in H264 and H265 codec.
+        Before starting the conversion, need to select the output folder from File Menu
+        Specification has given below
+        Time slice - 4 sec
+        Audio -192k 
+        sample rate - 48000Hz
+        Codec - ADTS
+        Channels - As default attached in Video file 
+        Resolution -
+        240      426X240
+        360      640X360
+        480      854X480
+        720      1280X720
+        1080   1920X1080
+        FPS - As default of video
+        Key integer - As default in ffmpeg
+        Gif time format - HH:MM:SS 
+
+        you can also send feedback on ranayas.store@gmail.com
         `,
 
     }
