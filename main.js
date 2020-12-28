@@ -194,7 +194,6 @@ function showMessageBox(win) {
         Key integer - As default in ffmpeg
         Gif time format - HH:MM:SS 
 
-        you can also send feedback on ranayas.store@gmail.com
         `,
 
     }
